@@ -74,7 +74,8 @@
           <li><strong>Live previews for every section.</strong> Currently mapped: homepage, PDP (using <code>/products/organic-heartstrings</code>), collection (<code>/collections/all</code>), find-my-match. Other sections show "preview pending" — they need a usage scan first to know which template to link to.</li>
           <li><strong>Schema details</strong> — settings, blocks, presets per section. Coming next.</li>
           <li><strong>Full usage data</strong> — which templates reference each section, orphan detection. Coming next.</li>
-          <li><strong>About preview rendering:</strong> Shopify returns <code>x-frame-options: DENY</code> and <code>frame-ancestors 'none'</code> on every storefront response, so we can't embed the live render inline. Each "Open live preview ↗" link opens the preview theme in a new tab with the right anchor.</li>
+          <li><strong>About preview rendering:</strong> Shopify returns <code>x-frame-options: DENY</code> on every storefront response, so we can't embed the live render inline. "Open live preview ↗" pops the preview theme in a new tab with the right anchor.</li>
+          <li><strong>Logged-in?</strong> The preview URLs include <code>?bypass_redirects=1</code>, which the preview theme's <code>customer-redirect</code>, <code>active-subscriber-redirect</code>, and <code>quiz-redirect</code> sections respect — so you stay on the rendered page instead of being routed to <code>/account?view=my_trade</code>. Only works on preview theme <code>186163495231</code>; production still redirects.</li>
         </ul>
       </footer>
     </main>

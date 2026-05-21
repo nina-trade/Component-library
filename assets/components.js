@@ -125,7 +125,10 @@
   // ===== Card rendering =====
   function previewUrl(item) {
     if (!item.preview) return null;
-    var url = previewBase + item.preview.path + '?preview_theme_id=' + previewThemeId;
+    // bypass_redirects=1 is honored by the preview theme's customer-redirect,
+    // active-subscriber-redirect, and quiz-redirect sections — keeps logged-in
+    // users on the rendered page so they can actually see the components.
+    var url = previewBase + item.preview.path + '?preview_theme_id=' + previewThemeId + '&bypass_redirects=1';
     if (item.preview.sectionId) url += '#shopify-section-' + item.preview.sectionId;
     return url;
   }
