@@ -153,8 +153,7 @@
 
     var actionsHtml = hasPreview
       ? '<div class="lib-comp-card__actions">' +
-          '<button data-action="toggle-preview" class="lib-comp-action">Preview ▾</button>' +
-          '<a href="' + previewUrl(item) + '" target="_blank" rel="noopener" data-action="open-tab" class="lib-comp-action lib-comp-action--secondary">Open in tab ↗</a>' +
+          '<a href="' + previewUrl(item) + '" target="_blank" rel="noopener" class="lib-comp-action">Open live preview ↗</a>' +
           '<button data-action="copy-path" class="lib-comp-action lib-comp-action--secondary">Copy path</button>' +
         '</div>'
       : '<div class="lib-comp-card__actions">' +
@@ -162,9 +161,7 @@
           '<button data-action="copy-path" class="lib-comp-action lib-comp-action--secondary">Copy path</button>' +
         '</div>';
 
-    var previewSlot = hasPreview
-      ? '<div class="lib-comp-card__preview" data-preview-slot></div>'
-      : '';
+    var previewSlot = '';
 
     card.innerHTML =
       '<div class="lib-comp-card__head">' +
@@ -184,20 +181,7 @@
   }
 
   function wireCard(card, item) {
-    var toggleBtn = card.querySelector('[data-action="toggle-preview"]');
     var copyBtn = card.querySelector('[data-action="copy-path"]');
-
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var expanded = card.classList.toggle('is-expanded');
-        toggleBtn.textContent = expanded ? 'Hide preview ▴' : 'Preview ▾';
-        if (expanded) {
-          mountPreview(card, item);
-        }
-      });
-    }
-
     if (copyBtn) {
       copyBtn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -206,30 +190,6 @@
         setTimeout(function () { copyBtn.textContent = 'Copy path'; }, 1200);
       });
     }
-  }
-
-  function mountPreview(card, item) {
-    var slot = card.querySelector('[data-preview-slot]');
-    if (!slot || slot.querySelector('iframe')) return;
-    var url = previewUrl(item);
-    var iframe = document.createElement('iframe');
-    iframe.src = url;
-    iframe.title = item.name + ' preview';
-    iframe.setAttribute('loading', 'lazy');
-    iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-    iframe.className = 'lib-comp-card__iframe';
-
-    // Fallback if Shopify blocks iframing (X-Frame-Options).
-    // We can't reliably detect that across origins, but we can render a soft
-    // fallback in the slot below the iframe so the user always has a way through.
-    var fallback = document.createElement('div');
-    fallback.className = 'lib-comp-card__fallback';
-    fallback.innerHTML =
-      'If the preview is blank, Shopify is blocking iframing. ' +
-      '<a href="' + url + '" target="_blank" rel="noopener">Open in a new tab ↗</a>';
-
-    slot.appendChild(iframe);
-    slot.appendChild(fallback);
   }
 
   // ===== Helpers =====
