@@ -418,6 +418,108 @@ code, pre { font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas,
   padding: 2px 0;
 }
 
+.lib-comp-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.lib-comp-card__badge {
+  flex-shrink: 0;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.lib-comp-card__badge--preview {
+  background: #ebff88;
+  color: #252525;
+}
+.lib-comp-card__badge--pending {
+  background: #f0eee8;
+  color: #7a7a7f;
+}
+.lib-comp-card__note {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+  color: #7a7a7f;
+  margin-top: 8px;
+  padding: 4px 8px;
+  background: #f0eee8;
+  border-radius: 4px;
+}
+.lib-comp-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 10px;
+}
+.lib-comp-action {
+  appearance: none;
+  background: #252525;
+  color: #ffffff;
+  border: 1px solid #252525;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 120ms ease, color 120ms ease;
+}
+.lib-comp-action:hover { background: #000000; }
+.lib-comp-action--secondary {
+  background: #ffffff;
+  color: #252525;
+  border: 1px solid #ebeae6;
+}
+.lib-comp-action--secondary:hover {
+  background: #f0eee8;
+  border-color: #252525;
+}
+.lib-comp-card__hint {
+  flex: 1;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+  color: #7a7a7f;
+  line-height: 1.45;
+}
+.lib-comp-card__preview {
+  display: none;
+  margin-top: 12px;
+  border: 1px solid #ebeae6;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+.lib-comp-card.is-expanded {
+  grid-column: 1 / -1;
+}
+.lib-comp-card.is-expanded .lib-comp-card__preview {
+  display: block;
+}
+.lib-comp-card__iframe {
+  display: block;
+  width: 100%;
+  height: 640px;
+  border: 0;
+  background: #ffffff;
+}
+.lib-comp-card__fallback {
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #7a7a7f;
+  background: #fafaf7;
+  border-top: 1px solid #ebeae6;
+}
+.lib-comp-card__fallback a { color: #252525; text-decoration: underline; }
+
 .lib-nav-count {
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-size: 10px;
