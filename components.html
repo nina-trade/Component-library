@@ -60,6 +60,7 @@
         />
         <div class="lib-filter-row" id="lib-flag-filters">
           <button data-flag-filter="all" class="lib-filter-pill is-active">All</button>
+          <button data-flag-filter="previewable" class="lib-filter-pill">Has live preview</button>
           <button data-flag-filter="flagged" class="lib-filter-pill">Flagged only</button>
           <button data-flag-filter="clean" class="lib-filter-pill">No flags</button>
         </div>
@@ -70,9 +71,10 @@
       <footer class="lib-section lib-section--footnote">
         <h2 class="lib-h2">What's not here yet</h2>
         <ul class="lib-body">
-          <li><strong>Schema details</strong> — settings, blocks, presets for each section. Coming in the next pass.</li>
-          <li><strong>Usage data</strong> — which templates reference each section, orphan detection. Coming in the next pass.</li>
-          <li><strong>Live previews</strong> — iframe render of each section from a clean preview-theme template. Coming in the next pass.</li>
+          <li><strong>Live previews for every section.</strong> Currently mapped: homepage, PDP (using <code>/products/organic-heartstrings</code>), collection (<code>/collections/all</code>), and find-my-match. Other sections show "preview pending" — they need usage data first to know which template to iframe.</li>
+          <li><strong>Schema details</strong> — settings, blocks, presets per section. Coming next.</li>
+          <li><strong>Full usage data</strong> — which templates reference each section, orphan detection. Coming next.</li>
+          <li><strong>Heads up:</strong> Shopify may block iframing on the storefront (X-Frame-Options). If a preview shows blank, use the "Open in tab" button on the card.</li>
         </ul>
       </footer>
     </main>

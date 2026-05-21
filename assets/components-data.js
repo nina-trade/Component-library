@@ -223,6 +223,49 @@ window.LIB_CATEGORIZE = function (name) {
   return 'Marketing blocks';
 };
 
+// Preview-theme URL + Shopify section ID for sections we know where to render.
+// Used by components.js to power the "Open preview" inline iframe.
+// Add new entries here as we read more templates/*.json files.
+window.LIB_PREVIEW_BASE = 'https://drinktrade.myshopify.com';
+window.LIB_PREVIEW_THEME_ID = '186163495231';
+window.LIB_PREVIEWS = {
+  // ---- Homepage (templates/index.json) ----
+  'customer-redirect':        { path: '/', sectionId: 'customer_redirect_XUJ3Ti' },
+  'trade-hero':               { path: '/', sectionId: 'trade_hero_VnTfQj' },
+  'trade-value-props':        { path: '/', sectionId: 'trade_value_props_anFQqe' },
+  'trade-bullet-points':      { path: '/', sectionId: 'trade_bullet_points_CE8km3' },
+  'trade-merch-split-column': { path: '/', sectionId: 'trade_merch_split_column_h6LK78', note: 'disabled in template' },
+  'trade-merch-50-50':        { path: '/', sectionId: 'trade_merch_50_50_8MetDJ', note: 'disabled in template' },
+  'trade-merch-curated-set':  { path: '/', sectionId: 'trade_merch_curated_set_MW9rhU' },
+  'trade-swipeable-cards':    { path: '/', sectionId: 'trade_swipeable_cards_KeBcGj' },
+  'trade-sticky-scroll':      { path: '/', sectionId: 'trade_sticky_scroll_WNYLdJ' },
+  'trade-pull-quote':         { path: '/', sectionId: 'trade_pull_quote_XmwpLH' },
+  'ugc-carousel':             { path: '/', sectionId: 'ugc_carousel_bN8CXm' },
+  'trade-ticker':             { path: '/', sectionId: 'trade_ticker_nB7Aie' },
+  'trade-50-50-offset':       { path: '/', sectionId: 'trade_50_50_offset_na8dmz' },
+  'marquee':                  { path: '/', sectionId: 'marquee_zwax9L' },
+  'trade-sticky-cta':         { path: '/', sectionId: 'trade_sticky_cta_eRh3by' },
+
+  // ---- Product / PDP (templates/product.json — using organic-heartstrings as the sample product) ----
+  'breadcrumb':                  { path: '/products/organic-heartstrings', sectionId: 'e1323f61-d813-499c-bb42-7e7375caf636' },
+  'product-main':                { path: '/products/organic-heartstrings', sectionId: 'product_main_REwncy' },
+  'collection-product-rail':     { path: '/products/organic-heartstrings', sectionId: 'collection_product_rail_KN3FkN' },
+  'trade-roaster-split-column':  { path: '/products/organic-heartstrings', sectionId: 'trade_roaster_split_column_G84TUr' },
+
+  // ---- Collection / PLP (templates/collection.json — using /collections/all) ----
+  'collection-default-header':    { path: '/collections/all', sectionId: 'collection_default_header_6Bkcfz' },
+  'main-collection-banner':       { path: '/collections/all', sectionId: 'banner', note: 'disabled in template' },
+  'main-collection-product-grid': { path: '/collections/all', sectionId: 'product-grid' },
+  'faq':                          { path: '/collections/all', sectionId: 'faqs' },
+
+  // ---- Quiz / Find My Match (templates/page.personalized-hero-quiz.json) ----
+  'quiz-app':       { path: '/pages/find-my-match', sectionId: 'quiz_app_hnjkmF' },
+  'quiz-redirect':  { path: '/pages/find-my-match', sectionId: 'quiz_redirect_QGEtdm', note: 'redirect logic; no visible render' },
+
+  // ---- Prototype (added in this session) ----
+  'homepage-cro-prototype': { path: '/', sectionId: 'homepage_cro_prototype_zzZ001', note: 'preview-theme only' }
+};
+
 // Flag legacy / versioned / typo'd sections for audit.
 window.LIB_FLAGS = function (name, all) {
   var flags = [];
