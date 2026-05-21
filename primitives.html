@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Primitives — Trade Component Library</title>
+    <link rel="stylesheet" href="assets/trade-tailwind.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <aside class="lib-sidebar">
+      <header class="lib-sidebar__header">
+        <div class="lib-sidebar__title">Trade</div>
+        <div class="lib-sidebar__subtitle">Component Library</div>
+      </header>
+      <nav class="lib-sidebar__nav">
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Foundations</div>
+          <a href="index.html" class="lib-nav-link">Overview</a>
+          <a href="tokens.html#colors" class="lib-nav-link">Colors</a>
+          <a href="tokens.html#typography" class="lib-nav-link">Typography</a>
+          <a href="tokens.html#spacing" class="lib-nav-link">Spacing</a>
+          <a href="tokens.html#radii" class="lib-nav-link">Radii</a>
+        </div>
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Primitives</div>
+          <a href="primitives.html#buttons" class="lib-nav-link">Buttons</a>
+          <a href="primitives.html#badges" class="lib-nav-link">Badges</a>
+        </div>
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Components</div>
+          <a href="components.html" class="lib-nav-link lib-nav-link--pending">All sections</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="lib-main">
+      <header class="lib-main__header">
+        <h1 class="lib-h1">Primitives</h1>
+        <p class="lib-lede">
+          Atomic UI elements found in the Trade theme. Variants are rendered
+          using actual Tailwind classes. Click any example to copy its class
+          string.
+        </p>
+      </header>
+
+      <section class="lib-section" id="buttons">
+        <h2 class="lib-h2">Buttons</h2>
+        <p class="lib-body lib-body--muted">
+          From the design system: the Modern Button (<code>trade-button</code>)
+          is the primary CTA. Variants below pulled from common usage across
+          sections.
+        </p>
+
+        <div class="lib-primitive-row">
+          <button class="bg-charcoal-600 hover:bg-charcoal-500 text-white font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
+            Primary
+          </button>
+          <code class="lib-primitive-label">bg-charcoal-600 text-white rounded-full</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button class="bg-white border border-charcoal-200 hover:border-charcoal-600 text-charcoal-600 font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
+            Secondary
+          </button>
+          <code class="lib-primitive-label">bg-white border-charcoal-200 rounded-full</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button class="bg-highlighter-200 hover:bg-highlighter-300 text-charcoal-600 font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
+            Highlighter
+          </button>
+          <code class="lib-primitive-label">bg-highlighter-200 text-charcoal-600</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button class="bg-blurple-500 hover:bg-blurple-600 text-white font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
+            Blurple
+          </button>
+          <code class="lib-primitive-label">bg-blurple-500 text-white</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button class="underline underline-offset-4 text-charcoal-600 font-sans text-body-16 font-medium px-2 py-2">
+            Text link
+          </button>
+          <code class="lib-primitive-label">underline text-charcoal-600</code>
+        </div>
+      </section>
+
+      <section class="lib-section" id="badges">
+        <h2 class="lib-h2">Badges</h2>
+        <p class="lib-body lib-body--muted">
+          Used sparingly to add color and call out promotions or new arrivals.
+        </p>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-highlighter-200 text-charcoal-600 text-eyebrow-sm">
+            Up to 30% off
+          </span>
+          <code class="lib-primitive-label">bg-highlighter-200 text-eyebrow-sm</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-bubblegum-200 text-charcoal-600 text-eyebrow-sm">
+            We recommend
+          </span>
+          <code class="lib-primitive-label">bg-bubblegum-200</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-blurple-100 text-charcoal-600 text-eyebrow-sm">
+            New
+          </span>
+          <code class="lib-primitive-label">bg-blurple-100</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-charcoal-50 text-charcoal-500 text-eyebrow-sm">
+            Sold out
+          </span>
+          <code class="lib-primitive-label">bg-charcoal-50 text-charcoal-500</code>
+        </div>
+      </section>
+
+      <section class="lib-section">
+        <h2 class="lib-h2">Coming next</h2>
+        <p class="lib-body">
+          Inputs, dropdowns, accordions, and form components. Refresh the
+          library once they're added below.
+        </p>
+      </section>
+    </main>
+
+    <script src="assets/script.js"></script>
+    <script>
+      // Click any primitive button or badge to copy the class string next to it
+      document.querySelectorAll('.lib-primitive-row').forEach(function (row) {
+        var label = row.querySelector('.lib-primitive-label');
+        if (!label) return;
+        row.addEventListener('click', function () {
+          navigator.clipboard && navigator.clipboard.writeText(label.textContent.trim());
+          var prev = label.style.background;
+          label.style.background = '#ebff88';
+          setTimeout(function () { label.style.background = prev; }, 400);
+        });
+        row.style.cursor = 'pointer';
+      });
+    </script>
+  </body>
+</html>

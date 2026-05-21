@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trade Component Library</title>
+    <link rel="stylesheet" href="assets/trade-tailwind.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <aside class="lib-sidebar">
+      <header class="lib-sidebar__header">
+        <div class="lib-sidebar__title">Trade</div>
+        <div class="lib-sidebar__subtitle">Component Library</div>
+      </header>
+      <nav class="lib-sidebar__nav" id="lib-nav">
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Foundations</div>
+          <a href="index.html" class="lib-nav-link" data-page="overview">Overview</a>
+          <a href="tokens.html#colors" class="lib-nav-link">Colors</a>
+          <a href="tokens.html#typography" class="lib-nav-link">Typography</a>
+          <a href="tokens.html#spacing" class="lib-nav-link">Spacing</a>
+          <a href="tokens.html#radii" class="lib-nav-link">Radii</a>
+        </div>
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Primitives</div>
+          <a href="primitives.html#buttons" class="lib-nav-link lib-nav-link--pending">Buttons</a>
+          <a href="primitives.html#badges" class="lib-nav-link lib-nav-link--pending">Badges</a>
+          <a href="primitives.html#inputs" class="lib-nav-link lib-nav-link--pending">Inputs</a>
+        </div>
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Components</div>
+          <a href="components.html" class="lib-nav-link lib-nav-link--pending">All sections</a>
+        </div>
+      </nav>
+      <footer class="lib-sidebar__footer">
+        <div class="lib-sidebar__meta">
+          <span>Last generated:</span>
+          <time id="lib-last-gen">—</time>
+        </div>
+      </footer>
+    </aside>
+
+    <main class="lib-main">
+      <header class="lib-main__header">
+        <h1 class="lib-h1">Trade Component Library</h1>
+        <p class="lib-lede">
+          An audit-first reference for everything currently built in the Trade
+          Shopify theme — design tokens, primitives, and components. Generated
+          from the live preview theme.
+        </p>
+      </header>
+
+      <section class="lib-section">
+        <h2 class="lib-h2">What's in here</h2>
+        <div class="lib-card-grid">
+          <a href="tokens.html" class="lib-card">
+            <div class="lib-card__eyebrow">Foundations</div>
+            <h3 class="lib-card__title">Tokens</h3>
+            <p class="lib-card__body">
+              Colors, typography, spacing, radii, breakpoints. Rendered with the
+              actual Trade Tailwind classes so what you see is what shipped.
+            </p>
+          </a>
+          <a href="primitives.html" class="lib-card lib-card--pending">
+            <div class="lib-card__eyebrow">Primitives</div>
+            <h3 class="lib-card__title">Buttons, badges, inputs</h3>
+            <p class="lib-card__body">
+              Atomic UI elements, variants side-by-side. Coming in the next pass.
+            </p>
+          </a>
+          <a href="components.html" class="lib-card lib-card--pending">
+            <div class="lib-card__eyebrow">Components</div>
+            <h3 class="lib-card__title">Sections</h3>
+            <p class="lib-card__body">
+              ~175 sections in the theme, each previewed live and tagged with
+              schema, settings, and where it's used. Coming in the next pass.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <section class="lib-section">
+        <h2 class="lib-h2">How to refresh</h2>
+        <p class="lib-body">
+          The theme moves; this site doesn't auto-sync. To pull in the latest
+          components and tokens, open this folder in Claude and paste:
+        </p>
+        <pre class="lib-code">Refresh the Trade component library — pull current sections, snippets, design tokens, regenerate all pages, and show me a changelog.</pre>
+        <p class="lib-body lib-body--muted">
+          Re-generation runs through Claude (because Shopify theme data is only
+          reachable via the MCP tools). After a regenerate, run
+          <code>git push</code> and GitHub Pages will update.
+        </p>
+      </section>
+    </main>
+
+    <script src="assets/script.js"></script>
+  </body>
+</html>

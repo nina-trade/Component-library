@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tokens — Trade Component Library</title>
+    <link rel="stylesheet" href="assets/trade-tailwind.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <aside class="lib-sidebar">
+      <header class="lib-sidebar__header">
+        <div class="lib-sidebar__title">Trade</div>
+        <div class="lib-sidebar__subtitle">Component Library</div>
+      </header>
+      <nav class="lib-sidebar__nav">
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Foundations</div>
+          <a href="index.html" class="lib-nav-link">Overview</a>
+          <a href="tokens.html#colors" class="lib-nav-link">Colors</a>
+          <a href="tokens.html#typography" class="lib-nav-link">Typography</a>
+          <a href="tokens.html#spacing" class="lib-nav-link">Spacing</a>
+          <a href="tokens.html#radii" class="lib-nav-link">Radii</a>
+        </div>
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Primitives</div>
+          <a href="primitives.html#buttons" class="lib-nav-link lib-nav-link--pending">Buttons</a>
+          <a href="primitives.html#badges" class="lib-nav-link lib-nav-link--pending">Badges</a>
+          <a href="primitives.html#inputs" class="lib-nav-link lib-nav-link--pending">Inputs</a>
+        </div>
+        <div class="lib-nav-group">
+          <div class="lib-nav-group__label">Components</div>
+          <a href="components.html" class="lib-nav-link lib-nav-link--pending">All sections</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="lib-main">
+      <header class="lib-main__header">
+        <h1 class="lib-h1">Tokens</h1>
+        <p class="lib-lede">
+          Every color, type style, spacing token, and radius defined in the
+          Trade Tailwind config. Swatches render with the actual classes from
+          the live theme — hex values are computed on load.
+        </p>
+      </header>
+
+      <!-- ============ COLORS ============ -->
+      <section class="lib-section" id="colors">
+        <h2 class="lib-h2">Colors</h2>
+
+        <h3 class="lib-h3">Charcoal (neutrals)</h3>
+        <div class="lib-swatch-grid" id="swatch-charcoal"></div>
+
+        <h3 class="lib-h3">Surface</h3>
+        <div class="lib-swatch-grid" id="swatch-surface"></div>
+
+        <h3 class="lib-h3">Highlighter (yellow-green)</h3>
+        <div class="lib-swatch-grid" id="swatch-highlighter"></div>
+
+        <h3 class="lib-h3">Blurple (purple-blue)</h3>
+        <div class="lib-swatch-grid" id="swatch-blurple"></div>
+
+        <h3 class="lib-h3">Ice (cool blue)</h3>
+        <div class="lib-swatch-grid" id="swatch-ice"></div>
+
+        <h3 class="lib-h3">Bubblegum (pink)</h3>
+        <div class="lib-swatch-grid" id="swatch-bubblegum"></div>
+
+        <h3 class="lib-h3">Roast (red)</h3>
+        <div class="lib-swatch-grid" id="swatch-roast"></div>
+      </section>
+
+      <!-- ============ TYPOGRAPHY ============ -->
+      <section class="lib-section" id="typography">
+        <h2 class="lib-h2">Typography</h2>
+
+        <h3 class="lib-h3">Display — GT Alpina, weight 500</h3>
+        <div id="type-display"></div>
+
+        <h3 class="lib-h3">Headline — Inter, weight 700</h3>
+        <div id="type-headline"></div>
+
+        <h3 class="lib-h3">Body — Inter, weight 400</h3>
+        <div id="type-body"></div>
+
+        <h3 class="lib-h3">Eyebrow — Geist Mono, weight 500</h3>
+        <div id="type-eyebrow"></div>
+      </section>
+
+      <!-- ============ SPACING ============ -->
+      <section class="lib-section" id="spacing">
+        <h2 class="lib-h2">Spacing</h2>
+        <p class="lib-body lib-body--muted">
+          Tailwind spacing scale. 1 unit = 4px. Visualized below relative to the
+          full container width.
+        </p>
+        <div id="spacing-list"></div>
+      </section>
+
+      <!-- ============ RADII ============ -->
+      <section class="lib-section" id="radii">
+        <h2 class="lib-h2">Radii</h2>
+        <p class="lib-body lib-body--muted">
+          Custom Trade radii extend the default Tailwind scale.
+        </p>
+        <div class="lib-radius-grid" id="radius-list"></div>
+      </section>
+
+      <!-- ============ BREAKPOINTS ============ -->
+      <section class="lib-section" id="breakpoints">
+        <h2 class="lib-h2">Breakpoints</h2>
+        <table class="lib-table">
+          <thead>
+            <tr><th>Name</th><th>Class prefix</th><th>Min width</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mobile</td><td><code>(default)</code></td><td>0px</td></tr>
+            <tr><td>Small</td><td><code>sm:</code></td><td>640px</td></tr>
+            <tr><td>Medium</td><td><code>md:</code></td><td>768px</td></tr>
+            <tr><td>Large</td><td><code>lg:</code></td><td>1024px</td></tr>
+            <tr><td>XL</td><td><code>xl:</code></td><td>1280px</td></tr>
+            <tr><td>2XL</td><td><code>2xl:</code></td><td>1536px</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="assets/script.js"></script>
+    <script src="assets/tokens.js"></script>
+  </body>
+</html>
