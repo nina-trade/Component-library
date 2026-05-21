@@ -26,6 +26,13 @@
           <div class="lib-nav-group__label">Primitives</div>
           <a href="primitives.html#buttons" class="lib-nav-link">Buttons</a>
           <a href="primitives.html#badges" class="lib-nav-link">Badges</a>
+          <a href="primitives.html#inputs" class="lib-nav-link">Inputs</a>
+          <a href="primitives.html#dropdowns" class="lib-nav-link">Dropdowns</a>
+          <a href="primitives.html#selectors" class="lib-nav-link">Selectors</a>
+          <a href="primitives.html#chips" class="lib-nav-link">Chips &amp; tags</a>
+          <a href="primitives.html#accordions" class="lib-nav-link">Accordions</a>
+          <a href="primitives.html#avatars" class="lib-nav-link">Avatars</a>
+          <a href="primitives.html#progress" class="lib-nav-link">Progress</a>
         </div>
         <div class="lib-nav-group">
           <div class="lib-nav-group__label">Components</div>
@@ -38,25 +45,24 @@
       <header class="lib-main__header">
         <h1 class="lib-h1">Primitives</h1>
         <p class="lib-lede">
-          Atomic UI elements found in the Trade theme. Variants are rendered
-          using actual Tailwind classes. Click any example to copy its class
-          string.
+          Atomic UI elements pulled from the Trade theme. Each variant is rendered
+          with the actual Tailwind classes used in production. Click any example
+          to copy its class string.
         </p>
       </header>
 
+      <!-- ============ BUTTONS ============ -->
       <section class="lib-section" id="buttons">
         <h2 class="lib-h2">Buttons</h2>
         <p class="lib-body lib-body--muted">
-          From the design system: the Modern Button (<code>trade-button</code>)
-          is the primary CTA. Variants below pulled from common usage across
-          sections.
+          Primary: charcoal pill, white text. Secondary: white pill, charcoal border. Accent variants for promotions / quizzes.
         </p>
 
         <div class="lib-primitive-row">
           <button class="bg-charcoal-600 hover:bg-charcoal-500 text-white font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
             Primary
           </button>
-          <code class="lib-primitive-label">bg-charcoal-600 text-white rounded-full</code>
+          <code class="lib-primitive-label">bg-charcoal-600 text-white rounded-full px-6 py-3</code>
         </div>
 
         <div class="lib-primitive-row">
@@ -68,16 +74,30 @@
 
         <div class="lib-primitive-row">
           <button class="bg-highlighter-200 hover:bg-highlighter-300 text-charcoal-600 font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
-            Highlighter
+            Highlighter (promo)
           </button>
           <code class="lib-primitive-label">bg-highlighter-200 text-charcoal-600</code>
         </div>
 
         <div class="lib-primitive-row">
           <button class="bg-blurple-500 hover:bg-blurple-600 text-white font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
-            Blurple
+            Blurple (quiz)
           </button>
           <code class="lib-primitive-label">bg-blurple-500 text-white</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button class="bg-charcoal-600 hover:bg-charcoal-500 text-white font-sans text-body-14 font-medium px-4 py-2 rounded-full transition-colors">
+            Small
+          </button>
+          <code class="lib-primitive-label">text-body-14 px-4 py-2</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button class="bg-charcoal-600 hover:bg-charcoal-500 text-white font-sans text-body-18 font-medium px-8 py-4 rounded-full transition-colors">
+            Large
+          </button>
+          <code class="lib-primitive-label">text-body-18 px-8 py-4</code>
         </div>
 
         <div class="lib-primitive-row">
@@ -86,59 +106,333 @@
           </button>
           <code class="lib-primitive-label">underline text-charcoal-600</code>
         </div>
+
+        <div class="lib-primitive-row">
+          <button disabled class="bg-charcoal-200 text-charcoal-400 font-sans text-body-16 font-medium px-6 py-3 rounded-full cursor-not-allowed">
+            Disabled
+          </button>
+          <code class="lib-primitive-label">bg-charcoal-200 text-charcoal-400</code>
+        </div>
       </section>
 
+      <!-- ============ BADGES ============ -->
       <section class="lib-section" id="badges">
         <h2 class="lib-h2">Badges</h2>
         <p class="lib-body lib-body--muted">
-          Used sparingly to add color and call out promotions or new arrivals.
+          Inline tags for promotions, status, and callouts. Used sparingly.
         </p>
 
         <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-highlighter-200 text-charcoal-600 text-eyebrow-sm">
-            Up to 30% off
-          </span>
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-highlighter-200 text-charcoal-600 text-eyebrow-sm">Up to 30% off</span>
           <code class="lib-primitive-label">bg-highlighter-200 text-eyebrow-sm</code>
         </div>
 
         <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-bubblegum-200 text-charcoal-600 text-eyebrow-sm">
-            We recommend
-          </span>
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-bubblegum-200 text-charcoal-600 text-eyebrow-sm">We recommend</span>
           <code class="lib-primitive-label">bg-bubblegum-200</code>
         </div>
 
         <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-blurple-100 text-charcoal-600 text-eyebrow-sm">
-            New
-          </span>
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-blurple-100 text-charcoal-600 text-eyebrow-sm">New</span>
           <code class="lib-primitive-label">bg-blurple-100</code>
         </div>
 
         <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-charcoal-50 text-charcoal-500 text-eyebrow-sm">
-            Sold out
-          </span>
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-ice-100 text-charcoal-600 text-eyebrow-sm">Cold brew</span>
+          <code class="lib-primitive-label">bg-ice-100</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-2.5 py-1 rounded bg-charcoal-50 text-charcoal-500 text-eyebrow-sm">Sold out</span>
           <code class="lib-primitive-label">bg-charcoal-50 text-charcoal-500</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full border border-charcoal-200 text-charcoal-600 text-eyebrow-sm bg-white">Decaf</span>
+          <code class="lib-primitive-label">rounded-full border-charcoal-200</code>
+        </div>
+      </section>
+
+      <!-- ============ INPUTS ============ -->
+      <section class="lib-section" id="inputs">
+        <h2 class="lib-h2">Inputs</h2>
+        <p class="lib-body lib-body--muted">
+          Trade inputs pull from the product-dropdown trigger style: white background, charcoal-600 border, 16px radius, generous padding. Same dimensions across text, email, and search.
+        </p>
+
+        <div class="lib-primitive-stack">
+          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">
+            Email
+            <input type="email" placeholder="you@example.com" class="mt-2 w-full bg-white border border-charcoal-600 rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600 placeholder:text-charcoal-400 focus:outline-none focus:ring-2 focus:ring-charcoal-600 focus:ring-offset-1" />
+          </label>
+          <code class="lib-primitive-label">border-charcoal-600 rounded-[16px] px-6 py-[14px]</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">
+            Search
+            <input type="search" placeholder="Search coffees…" class="mt-2 w-full bg-charcoal-50 border-0 rounded-full px-6 py-[12px] text-[14px] leading-relaxed text-charcoal-600 placeholder:text-charcoal-400 focus:outline-none focus:ring-2 focus:ring-charcoal-600 focus:ring-offset-1" />
+          </label>
+          <code class="lib-primitive-label">bg-charcoal-50 rounded-full</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">
+            Error state
+            <input type="text" value="invalid value" class="mt-2 w-full bg-white border border-roast rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600 focus:outline-none" />
+          </label>
+          <code class="lib-primitive-label">border-roast (error)</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-400 mb-2">
+            Disabled
+            <input type="text" value="locked" disabled class="mt-2 w-full bg-charcoal-50 border border-charcoal-200 rounded-[16px] px-6 py-[14px] text-[16px] text-charcoal-400" />
+          </label>
+          <code class="lib-primitive-label">bg-charcoal-50 border-charcoal-200</code>
+        </div>
+      </section>
+
+      <!-- ============ DROPDOWNS ============ -->
+      <section class="lib-section" id="dropdowns">
+        <h2 class="lib-h2">Dropdowns</h2>
+        <p class="lib-body lib-body--muted">
+          Two variants from <code>snippets/product-dropdown.liquid</code>: default for PDP variant selection, pill for cadence/frequency selectors.
+        </p>
+
+        <div class="lib-primitive-stack">
+          <p class="text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">Bag size</p>
+          <button class="w-full flex items-center justify-between bg-white border border-charcoal-600 rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600">
+            <span>12 oz · Standard</span>
+            <svg class="w-5 h-[11px] flex-shrink-0 ml-4" viewBox="0 0 20 11" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.2946 0.372C19.4573 0.5347 19.4573 0.7985 19.2946 0.9613L10.1279 10.128C10.0498 10.2061 9.9438 10.25 9.8333 10.25C9.7228 10.25 9.6168 10.2061 9.5387 10.128L0.372 0.9613C0.2093 0.7985 0.2093 0.5347 0.372 0.372C0.5347 0.2093 0.7986 0.2093 0.9613 0.372L9.8333 9.244L18.7053 0.372C18.868 0.2093 19.1319 0.2093 19.2946 0.372Z" fill="#252525" stroke="#252525" stroke-width="0.5"/></svg>
+          </button>
+          <code class="lib-primitive-label">border-charcoal-600 rounded-[16px] — default</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <p class="text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">Delivery cadence</p>
+          <button class="w-full flex items-center justify-between bg-charcoal-50 rounded-full px-6 py-[14px] text-[14px] leading-relaxed text-charcoal-600">
+            <span>Every 2 weeks (most popular)</span>
+            <svg class="w-5 h-[11px] flex-shrink-0 ml-4" viewBox="0 0 20 11" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.2946 0.372C19.4573 0.5347 19.4573 0.7985 19.2946 0.9613L10.1279 10.128C10.0498 10.2061 9.9438 10.25 9.8333 10.25C9.7228 10.25 9.6168 10.2061 9.5387 10.128L0.372 0.9613C0.2093 0.7985 0.2093 0.5347 0.372 0.372C0.5347 0.2093 0.7986 0.2093 0.9613 0.372L9.8333 9.244L18.7053 0.372C18.868 0.2093 19.1319 0.2093 19.2946 0.372Z" fill="#7A7A7F" stroke="#7A7A7F" stroke-width="0.5"/></svg>
+          </button>
+          <code class="lib-primitive-label">bg-charcoal-50 rounded-full — pill</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <p class="text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">Open state (panel visible)</p>
+          <div class="relative">
+            <button class="w-full flex items-center justify-between bg-white border border-charcoal-600 rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600">
+              <span>Whole bean</span>
+              <svg class="w-5 h-[11px] flex-shrink-0 ml-4 rotate-180" viewBox="0 0 20 11" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.2946 0.372C19.4573 0.5347 19.4573 0.7985 19.2946 0.9613L10.1279 10.128C10.0498 10.2061 9.9438 10.25 9.8333 10.25C9.7228 10.25 9.6168 10.2061 9.5387 10.128L0.372 0.9613C0.2093 0.7985 0.2093 0.5347 0.372 0.372C0.5347 0.2093 0.7986 0.2093 0.9613 0.372L9.8333 9.244L18.7053 0.372C18.868 0.2093 19.1319 0.2093 19.2946 0.372Z" fill="#252525" stroke="#252525" stroke-width="0.5"/></svg>
+            </button>
+            <div class="absolute z-50 w-full mt-2 bg-white border border-charcoal-200 rounded-[16px] overflow-hidden">
+              <div class="px-6 py-4 text-[16px] text-charcoal-600 bg-charcoal-100">Whole bean</div>
+              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">Drip</div>
+              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">Pour over</div>
+              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">French press</div>
+              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">Espresso</div>
+            </div>
+          </div>
+          <code class="lib-primitive-label">+ open panel: border-charcoal-200 rounded-[16px]</code>
+        </div>
+      </section>
+
+      <!-- ============ SELECTORS (checkbox / radio / toggle) ============ -->
+      <section class="lib-section" id="selectors">
+        <h2 class="lib-h2">Selectors</h2>
+        <p class="lib-body lib-body--muted">
+          Checkboxes, radios, and toggles. Tailwind defaults restyled with the charcoal accent — Trade's brand color stays subtle in form controls.
+        </p>
+
+        <div class="lib-primitive-row">
+          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600">
+            <input type="checkbox" checked class="w-5 h-5 rounded border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
+            Subscribe and save
+          </label>
+          <code class="lib-primitive-label">w-5 h-5 rounded border-charcoal-400</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600">
+            <input type="checkbox" class="w-5 h-5 rounded border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
+            One-time purchase
+          </label>
+          <code class="lib-primitive-label">unchecked default</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600">
+            <input type="radio" name="grind" checked class="w-5 h-5 border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
+            Whole bean
+          </label>
+          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600 ml-6">
+            <input type="radio" name="grind" class="w-5 h-5 border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
+            Ground
+          </label>
+          <code class="lib-primitive-label">radio · grouped</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button type="button" role="switch" aria-checked="true" class="relative inline-flex h-6 w-11 items-center rounded-full bg-charcoal-600 transition-colors">
+            <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow translate-x-5 transition-transform"></span>
+          </button>
+          <span class="text-[14px] text-charcoal-600">Toggle · on</span>
+          <code class="lib-primitive-label">bg-charcoal-600 (on)</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <button type="button" role="switch" aria-checked="false" class="relative inline-flex h-6 w-11 items-center rounded-full bg-charcoal-200 transition-colors">
+            <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow translate-x-0.5 transition-transform"></span>
+          </button>
+          <span class="text-[14px] text-charcoal-600">Toggle · off</span>
+          <code class="lib-primitive-label">bg-charcoal-200 (off)</code>
+        </div>
+      </section>
+
+      <!-- ============ CHIPS & TAGS ============ -->
+      <section class="lib-section" id="chips">
+        <h2 class="lib-h2">Chips &amp; tags</h2>
+        <p class="lib-body lib-body--muted">
+          Outlined chips for origins / flavor notes (find-my-match style), filled for active selections, removable for filters.
+        </p>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-3 py-1.5 border border-charcoal-200 rounded-lg text-[13px] text-charcoal-600 bg-white">Brazil</span>
+          <span class="inline-flex items-center px-3 py-1.5 border border-charcoal-200 rounded-lg text-[13px] text-charcoal-600 bg-white">Ethiopia</span>
+          <span class="inline-flex items-center px-3 py-1.5 border border-charcoal-200 rounded-lg text-[13px] text-charcoal-600 bg-white">Colombia</span>
+          <code class="lib-primitive-label">origin chip · border-charcoal-200 rounded-lg</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center px-3 py-1.5 bg-charcoal-600 text-white rounded-lg text-[13px]">Dark roast</span>
+          <span class="inline-flex items-center px-3 py-1.5 bg-charcoal-600 text-white rounded-lg text-[13px]">Espresso</span>
+          <code class="lib-primitive-label">selected · bg-charcoal-600 text-white</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <span class="inline-flex items-center gap-1.5 pl-3 pr-2 py-1.5 bg-charcoal-50 rounded-full text-[13px] text-charcoal-600">
+            Light roast
+            <button class="w-4 h-4 flex items-center justify-center rounded-full hover:bg-charcoal-200" aria-label="Remove">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M2 2 L22 22 M22 2 L2 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </button>
+          </span>
+          <code class="lib-primitive-label">filter chip · pl-3 pr-2 rounded-full</code>
+        </div>
+      </section>
+
+      <!-- ============ ACCORDIONS ============ -->
+      <section class="lib-section" id="accordions">
+        <h2 class="lib-h2">Accordions</h2>
+        <p class="lib-body lib-body--muted">
+          From <code>snippets/pdp-accordion-block.liquid</code>. Top border, 92px header, plus/x icon swap on toggle.
+        </p>
+
+        <div class="lib-primitive-stack">
+          <div class="border-t border-b border-charcoal-400 bg-white">
+            <button class="w-full flex items-center justify-between h-[92px] px-2">
+              <span class="font-sans text-lg font-semibold text-charcoal-600 tracking-[-0.54px]">Flavor Profile</span>
+              <div class="w-6 h-6 shrink-0 flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2412 12.2586V22.7586C13.2412 23.4442 12.9054 24 12.4912 24C12.077 24 11.7412 23.4442 11.7412 22.7586V12.2586H1.24138C0.555784 12.2586 0 11.9228 0 11.5086C0 11.0944 0.555784 10.7586 1.24138 10.7586H11.7412V1.24138C11.7412 0.555784 12.077 0 12.4912 0C12.9054 0 13.2412 0.555784 13.2412 1.24138V10.7586H22.7586C23.4442 10.7586 24 11.0944 24 11.5086C24 11.9228 23.4442 12.2586 22.7586 12.2586H13.2412Z" fill="currentColor"/></svg>
+              </div>
+            </button>
+          </div>
+          <code class="lib-primitive-label">closed · h-[92px] · plus icon</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <div class="border-t border-b border-charcoal-400 bg-white">
+            <button class="w-full flex items-center justify-between h-[92px] px-2">
+              <span class="font-sans text-lg font-semibold text-charcoal-600 tracking-[-0.54px]">Origin &amp; Sourcing</span>
+              <div class="w-6 h-6 shrink-0 flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.7559 2.24408C22.0814 2.56951 22.0814 3.09715 21.7559 3.42259L3.42259 21.7559C3.09715 22.0814 2.56951 22.0814 2.24408 21.7559C1.91864 21.4305 1.91864 20.9028 2.24408 20.5774L20.5774 2.24408C20.9028 1.91864 21.4305 1.91864 21.7559 2.24408Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.24408 2.24408C2.56951 1.91864 3.09715 1.91864 3.42259 2.24408L21.7559 20.5774C22.0814 20.9028 22.0814 21.4305 21.7559 21.7559C21.4305 22.0814 20.9028 22.0814 20.5774 21.7559L2.24408 3.42259C1.91864 3.09715 1.91864 2.56951 2.24408 2.24408Z" fill="currentColor"/></svg>
+              </div>
+            </button>
+            <div class="pt-6 pb-12 px-2 pr-6">
+              <p class="text-[14px] text-charcoal-500 leading-relaxed">A balanced washed Ethiopia Yirgacheffe sourced direct from the Hama cooperative. Notes of citrus blossom, honeysuckle, and brown sugar.</p>
+            </div>
+          </div>
+          <code class="lib-primitive-label">open · x icon · pt-6 pb-12 content</code>
+        </div>
+      </section>
+
+      <!-- ============ AVATARS ============ -->
+      <section class="lib-section" id="avatars">
+        <h2 class="lib-h2">Avatars</h2>
+        <p class="lib-body lib-body--muted">
+          Roaster profile circles from the swipeable-cards section. Sized small / medium / large.
+        </p>
+
+        <div class="lib-primitive-row">
+          <div class="w-8 h-8 rounded-full bg-blurple-200 flex items-center justify-center text-charcoal-600 text-eyebrow-xs font-semibold">RA</div>
+          <div class="w-12 h-12 rounded-full bg-highlighter-200 flex items-center justify-center text-charcoal-600 text-eyebrow-sm font-semibold">SP</div>
+          <div class="w-16 h-16 rounded-full bg-bubblegum-200 flex items-center justify-center text-charcoal-600 text-eyebrow-md font-semibold">DN</div>
+          <code class="lib-primitive-label">rounded-full · w-8 / w-12 / w-16</code>
+        </div>
+
+        <div class="lib-primitive-row">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow flex items-center justify-center bg-charcoal-100">
+            <span class="text-charcoal-600 text-eyebrow-sm font-semibold">PR</span>
+          </div>
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow flex items-center justify-center bg-charcoal-100 -ml-3">
+            <span class="text-charcoal-600 text-eyebrow-sm font-semibold">WS</span>
+          </div>
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow flex items-center justify-center bg-charcoal-100 -ml-3">
+            <span class="text-charcoal-600 text-eyebrow-sm font-semibold">AI</span>
+          </div>
+          <code class="lib-primitive-label">stacked · -ml-3 border-2 border-white</code>
+        </div>
+      </section>
+
+      <!-- ============ PROGRESS ============ -->
+      <section class="lib-section" id="progress">
+        <h2 class="lib-h2">Progress</h2>
+        <p class="lib-body lib-body--muted">
+          Onboarding progress bar pattern from <code>sections/onboarding-step-progress.liquid</code>. 8px height, rounded, animated fill. Stepper variant for multi-stage flows.
+        </p>
+
+        <div class="lib-primitive-stack">
+          <p class="text-eyebrow-sm text-charcoal-500 mb-2">25%</p>
+          <div class="h-2 w-full bg-charcoal-100 rounded-md overflow-hidden">
+            <div class="h-full bg-charcoal-600 rounded-md" style="width:25%"></div>
+          </div>
+          <code class="lib-primitive-label">h-2 bg-charcoal-100 · fill bg-charcoal-600</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <p class="text-eyebrow-sm text-charcoal-500 mb-2">75%</p>
+          <div class="h-2 w-full bg-charcoal-100 rounded-md overflow-hidden">
+            <div class="h-full bg-highlighter-300 rounded-md" style="width:75%"></div>
+          </div>
+          <code class="lib-primitive-label">h-2 · fill bg-highlighter-300</code>
+        </div>
+
+        <div class="lib-primitive-stack">
+          <p class="text-eyebrow-sm text-charcoal-500 mb-2">Stepper · step 2 of 4</p>
+          <div class="flex items-center gap-2">
+            <div class="flex-1 h-1 rounded-full bg-charcoal-600"></div>
+            <div class="flex-1 h-1 rounded-full bg-charcoal-600"></div>
+            <div class="flex-1 h-1 rounded-full bg-charcoal-100"></div>
+            <div class="flex-1 h-1 rounded-full bg-charcoal-100"></div>
+          </div>
+          <code class="lib-primitive-label">stepper · 4 segments h-1</code>
         </div>
       </section>
 
       <section class="lib-section">
         <h2 class="lib-h2">Coming next</h2>
         <p class="lib-body">
-          Inputs, dropdowns, accordions, and form components. Refresh the
-          library once they're added below.
+          Modal / drawer scaffolds, loading spinners, tooltips, and icon library. Refresh the library once they're added.
         </p>
       </section>
     </main>
 
     <script src="assets/script.js"></script>
     <script>
-      // Click any primitive button or badge to copy the class string next to it
-      document.querySelectorAll('.lib-primitive-row').forEach(function (row) {
+      document.querySelectorAll('.lib-primitive-row, .lib-primitive-stack').forEach(function (row) {
         var label = row.querySelector('.lib-primitive-label');
         if (!label) return;
-        row.addEventListener('click', function () {
+        row.addEventListener('click', function (e) {
+          if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
           navigator.clipboard && navigator.clipboard.writeText(label.textContent.trim());
           var prev = label.style.background;
           label.style.background = '#ebff88';
