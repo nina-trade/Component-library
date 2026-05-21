@@ -226,7 +226,9 @@ window.LIB_CATEGORIZE = function (name) {
 // Preview-theme URL + Shopify section ID for sections we know where to render.
 // Used by components.js to power the "Open preview" inline iframe.
 // Add new entries here as we read more templates/*.json files.
-window.LIB_PREVIEW_BASE = 'https://drinktrade.myshopify.com';
+// Using www.drinktrade.com directly — drinktrade.myshopify.com 301-redirects
+// here and strips query params (including preview_theme_id and bypass_redirects).
+window.LIB_PREVIEW_BASE = 'https://www.drinktrade.com';
 window.LIB_PREVIEW_THEME_ID = '186163495231';
 window.LIB_PREVIEWS = {
   // ---- Homepage (templates/index.json) ----
@@ -249,14 +251,14 @@ window.LIB_PREVIEWS = {
   // ---- Product / PDP (templates/product.json — using organic-heartstrings as the sample product) ----
   'breadcrumb':                  { path: '/products/organic-heartstrings', sectionId: 'e1323f61-d813-499c-bb42-7e7375caf636' },
   'product-main':                { path: '/products/organic-heartstrings', sectionId: 'product_main_REwncy' },
-  'collection-product-rail':     { path: '/products/organic-heartstrings', sectionId: 'collection_product_rail_KN3FkN' },
-  'trade-roaster-split-column':  { path: '/products/organic-heartstrings', sectionId: 'trade_roaster_split_column_G84TUr' },
 
   // ---- Collection / PLP (templates/collection.json — using /collections/all) ----
   'collection-default-header':    { path: '/collections/all', sectionId: 'collection_default_header_6Bkcfz' },
-  'main-collection-banner':       { path: '/collections/all', sectionId: 'banner', note: 'disabled in template' },
-  'main-collection-product-grid': { path: '/collections/all', sectionId: 'product-grid' },
-  'faq':                          { path: '/collections/all', sectionId: 'faqs' },
+  'main-collection-banner':       { path: '/collections/all', sectionId: 'banner', note: 'Disabled in the collection template — preview link will scroll to an empty anchor.' },
+  'main-collection-product-grid': { path: '/collections/all', sectionId: 'product-grid', note: 'The product grid is the main content of the collection page — scroll past the header to see it.' },
+  'collection-product-rail':      { path: '/products/organic-heartstrings', sectionId: 'collection_product_rail_KN3FkN', note: 'Renders below the main product info on PDP — scroll down.' },
+  'trade-roaster-split-column':   { path: '/products/organic-heartstrings', sectionId: 'trade_roaster_split_column_G84TUr', note: 'Renders below the product rail on PDP — scroll down.' },
+  'faq':                          { path: '/collections/all', sectionId: 'faqs', note: 'Rendered as a block at the BOTTOM of the collection page — scroll past the product grid.' },
 
   // ---- Quiz / Find My Match (templates/page.personalized-hero-quiz.json) ----
   'quiz-app':       { path: '/pages/find-my-match', sectionId: 'quiz_app_hnjkmF' },
