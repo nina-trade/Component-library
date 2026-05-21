@@ -13,11 +13,14 @@
         <div class="lib-sidebar__title">Trade</div>
         <div class="lib-sidebar__subtitle">Component Library</div>
       </header>
-      <nav class="lib-sidebar__nav">
+      <nav class="lib-sidebar__nav" id="lib-nav">
         <div class="lib-nav-group">
           <div class="lib-nav-group__label">Foundations</div>
           <a href="index.html" class="lib-nav-link">Overview</a>
-          <a href="tokens.html" class="lib-nav-link">Tokens</a>
+          <a href="tokens.html#colors" class="lib-nav-link">Colors</a>
+          <a href="tokens.html#typography" class="lib-nav-link">Typography</a>
+          <a href="tokens.html#spacing" class="lib-nav-link">Spacing</a>
+          <a href="tokens.html#radii" class="lib-nav-link">Radii</a>
         </div>
         <div class="lib-nav-group">
           <div class="lib-nav-group__label">Primitives</div>
@@ -31,9 +34,9 @@
           <a href="primitives.html#avatars" class="lib-nav-link">Avatars</a>
           <a href="primitives.html#progress" class="lib-nav-link">Progress</a>
         </div>
-        <div class="lib-nav-group">
+        <div class="lib-nav-group" id="lib-category-nav">
           <div class="lib-nav-group__label">Components</div>
-          <a href="components.html" class="lib-nav-link">All sections</a>
+          <!-- Category links injected by JS -->
         </div>
       </nav>
     </aside>
@@ -42,27 +45,40 @@
       <header class="lib-main__header">
         <h1 class="lib-h1">Components</h1>
         <p class="lib-lede">
-          Every section in the Trade theme — grouped, searchable, and previewed
-          live from the preview theme. Coming in the next pass.
+          Every section currently in the Trade Shopify theme — grouped by
+          category, with legacy / versioning flags surfaced for audit.
+          <span id="lib-count" class="lib-body--muted"></span>
         </p>
       </header>
 
-      <section class="lib-section">
-        <h2 class="lib-h2">In progress</h2>
-        <p class="lib-body">
-          The component catalog is the next thing being built. When ready, this
-          page will show:
-        </p>
+      <div class="lib-controls">
+        <input
+          type="search"
+          id="lib-search"
+          placeholder="Filter by name (e.g. trade-hero, accordion, v2)…"
+          class="lib-search-input"
+        />
+        <div class="lib-filter-row" id="lib-flag-filters">
+          <button data-flag-filter="all" class="lib-filter-pill is-active">All</button>
+          <button data-flag-filter="flagged" class="lib-filter-pill">Flagged only</button>
+          <button data-flag-filter="clean" class="lib-filter-pill">No flags</button>
+        </div>
+      </div>
+
+      <div id="lib-categories"></div>
+
+      <footer class="lib-section lib-section--footnote">
+        <h2 class="lib-h2">What's not here yet</h2>
         <ul class="lib-body">
-          <li>Each section grouped by family (Trade-branded, PDP, quiz, etc.)</li>
-          <li>Schema settings (what configures each component)</li>
-          <li>Where it's used in the templates (load-bearing vs. legacy)</li>
-          <li>Live preview embedded from the preview theme</li>
-          <li>Orphan flag for sections that aren't referenced anywhere</li>
+          <li><strong>Schema details</strong> — settings, blocks, presets for each section. Coming in the next pass.</li>
+          <li><strong>Usage data</strong> — which templates reference each section, orphan detection. Coming in the next pass.</li>
+          <li><strong>Live previews</strong> — iframe render of each section from a clean preview-theme template. Coming in the next pass.</li>
         </ul>
-      </section>
+      </footer>
     </main>
 
     <script src="assets/script.js"></script>
+    <script src="assets/components-data.js"></script>
+    <script src="assets/components.js"></script>
   </body>
 </html>
