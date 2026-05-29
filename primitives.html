@@ -1,445 +1,500 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Primitives — Trade Component Library</title>
-    <link rel="stylesheet" href="assets/trade-tailwind.css" />
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
-  <body>
-    <aside class="lib-sidebar">
-      <header class="lib-sidebar__header">
-        <div class="lib-sidebar__title">Trade</div>
-        <div class="lib-sidebar__subtitle">Component Library</div>
-      </header>
-      <nav class="lib-sidebar__nav">
-        <div class="lib-nav-group">
-          <div class="lib-nav-group__label">Foundations</div>
-          <a href="index.html" class="lib-nav-link">Overview</a>
-          <a href="tokens.html#colors" class="lib-nav-link">Colors</a>
-          <a href="tokens.html#typography" class="lib-nav-link">Typography</a>
-          <a href="tokens.html#spacing" class="lib-nav-link">Spacing</a>
-          <a href="tokens.html#radii" class="lib-nav-link">Radii</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primitives — Trade Component Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          sans: ['Inter', 'Helvetica', 'sans-serif'],
+          serif: ['GT Alpina', 'Georgia', 'serif'],
+          mono: ['Geist Mono', 'monospace'],
+        },
+        extend: {
+          spacing: { 15: '3.75rem', 21: '5.25rem', 22: '5.5rem', 25: '6.25rem', 30: '7.5rem' },
+          borderRadius: { 18: '18px', 20: '20px', 24: '24px', 28: '28px' },
+          colors: {
+            'charcoal-600': '#252525', 'charcoal-500': '#4F4F52', 'charcoal-400': '#7A7A7F',
+            'charcoal-300': '#B8B8BC', 'charcoal-200': '#D7D7DA', 'charcoal-100': '#ECECEE',
+            'charcoal-50': '#F7F7F8', 'surface-white': '#FFFFFF', 'surface-warm': '#F9F6F6',
+            'roast': '#9C3912', 'red': '#F45048', 'trade-utility': '#029C02',
+            'highlighter-200': '#EBFF88', 'highlighter-100': '#F3FFB9',
+            'blurple-500': '#687AFD', 'blurple-400': '#808EFF', 'blurple-300': '#9FAAFE',
+            'blurple-200': '#C7CDFE', 'blurple-50': '#E5E7FF',
+            'ice-300': '#B0DDF7', 'ice-200': '#C5E8FC',
+            'bubblegum-500': '#E07DE8', 'bubblegum-400': '#EB9BF2', 'bubblegum-300': '#EFAEF4',
+            'bubblegum-200': '#F7C5FB', 'bubblegum-50': '#FDF1FE',
+          },
+          fontSize: {
+            'eyebrow-lg': ['16px', { lineHeight: '1.5', letterSpacing: '2.56px', fontWeight: '500' }],
+            'eyebrow-md': ['14px', { lineHeight: '1.5', letterSpacing: '2.52px', fontWeight: '500' }],
+            'eyebrow-sm': ['12px', { lineHeight: '1.5', letterSpacing: '2.4px', fontWeight: '500' }],
+            'body-24': ['24px', { lineHeight: '1.5', letterSpacing: '0.42px', fontWeight: '400' }],
+            'body-20': ['20px', { lineHeight: '1.5', letterSpacing: '0.16px', fontWeight: '400' }],
+            'body-18': ['18px', { lineHeight: '1.5', letterSpacing: '0.12px', fontWeight: '400' }],
+            'body-16': ['16px', { lineHeight: '1.5', letterSpacing: 'normal', fontWeight: '400' }],
+            'body-14': ['14px', { lineHeight: '1.6', letterSpacing: '-0.02px', fontWeight: '400' }],
+            'body-12': ['12px', { lineHeight: '1.6', letterSpacing: 'normal', fontWeight: '400' }],
+            'headline-44': ['44px', { lineHeight: '1.1', letterSpacing: '-0.2px', fontWeight: '700' }],
+            'headline-32': ['32px', { lineHeight: '1.1', letterSpacing: '-0.2px', fontWeight: '700' }],
+            'headline-24': ['24px', { lineHeight: '1.1', letterSpacing: '-0.42px', fontWeight: '700' }],
+            'headline-20': ['20px', { lineHeight: '1.12', letterSpacing: '-0.5px', fontWeight: '700' }],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @font-face { font-family: 'GT Alpina'; src: local('GT Alpina'), local('GT-Alpina'); font-weight: 100 900; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 48px; }
+    body { -webkit-font-smoothing: antialiased; }
+    [data-copy] { cursor: pointer; }
+    [data-copy]:hover { color: #252525 !important; }
+    .accordion-content { display: none; }
+    .accordion-content.open { display: block; }
+  </style>
+</head>
+<body class="bg-white font-sans text-charcoal-600">
+
+  <aside id="sidebar" class="fixed inset-y-0 left-0 w-[240px] border-r border-charcoal-100 overflow-y-auto bg-white z-10 px-5 py-7"></aside>
+
+  <main class="ml-[240px] min-h-screen">
+    <div class="px-16 py-14 max-w-[880px]">
+
+      <!-- Page header -->
+      <div class="mb-14">
+        <h1 class="text-headline-44 text-charcoal-600 mb-3">Primitives</h1>
+        <p class="text-body-18 text-charcoal-400">Atomic UI elements pulled from the Trade theme. Each variant is rendered with the actual Tailwind classes used in production. Click any example to copy its class string.</p>
+      </div>
+
+      <!-- ─── BUTTONS ─── -->
+      <section id="buttons" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Buttons</h2>
+          <p class="text-body-14 text-charcoal-400">Primary: charcoal pill, white text. Secondary: white pill, charcoal border. Accent variants for promotions / quizzes.</p>
         </div>
-        <div class="lib-nav-group">
-          <div class="lib-nav-group__label">Primitives</div>
-          <a href="primitives.html#buttons" class="lib-nav-link">Buttons</a>
-          <a href="primitives.html#badges" class="lib-nav-link">Badges</a>
-          <a href="primitives.html#inputs" class="lib-nav-link">Inputs</a>
-          <a href="primitives.html#dropdowns" class="lib-nav-link">Dropdowns</a>
-          <a href="primitives.html#selectors" class="lib-nav-link">Selectors</a>
-          <a href="primitives.html#chips" class="lib-nav-link">Chips &amp; tags</a>
-          <a href="primitives.html#accordions" class="lib-nav-link">Accordions</a>
-          <a href="primitives.html#avatars" class="lib-nav-link">Avatars</a>
-          <a href="primitives.html#progress" class="lib-nav-link">Progress</a>
-        </div>
-        <div class="lib-nav-group">
-          <div class="lib-nav-group__label">Components</div>
-          <a href="components.html" class="lib-nav-link">All sections</a>
-        </div>
-      </nav>
-    </aside>
+        <div class="divide-y divide-charcoal-100">
 
-    <main class="lib-main">
-      <header class="lib-main__header">
-        <h1 class="lib-h1">Primitives</h1>
-        <p class="lib-lede">
-          Atomic UI elements pulled from the Trade theme. Each variant is rendered
-          with the actual Tailwind classes used in production. Click any example
-          to copy its class string.
-        </p>
-      </header>
+          <div class="flex items-center justify-between py-5">
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors cursor-pointer">Primary</button>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors">bg-charcoal-600 text-white rounded-lg px-6 py-3</code>
+          </div>
 
-      <!-- ============ BUTTONS ============ -->
-      <section class="lib-section" id="buttons">
-        <h2 class="lib-h2">Buttons</h2>
-        <p class="lib-body lib-body--muted">
-          Primary: charcoal pill, white text. Secondary: white pill, charcoal border. Accent variants for promotions / quizzes.
-        </p>
+          <div class="flex items-center justify-between py-5">
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 border border-charcoal-200 text-charcoal-600 hover:bg-charcoal-500 hover:text-white hover:border-charcoal-500 transition-all duration-200 cursor-pointer">Secondary</button>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 border border-charcoal-200 text-charcoal-600 hover:bg-charcoal-500 hover:text-white hover:border-charcoal-500 transition-all duration-200">bg-white border-charcoal-200 rounded-lg px-6 py-3</code>
+          </div>
 
-        <div class="lib-primitive-row">
-          <button class="bg-charcoal-600 hover:bg-charcoal-500 text-white font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
-            Primary
-          </button>
-          <code class="lib-primitive-label">bg-charcoal-600 text-white rounded-full px-6 py-3</code>
-        </div>
+          <div class="flex items-center justify-between py-5">
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 border border-charcoal-600 text-charcoal-600 hover:bg-charcoal-500 hover:text-white transition-all duration-200 cursor-pointer">Outline</button>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 border border-charcoal-600 text-charcoal-600 hover:bg-charcoal-500 hover:text-white transition-all duration-200">border-charcoal-600 text-charcoal-600 rounded-lg px-6 py-3</code>
+          </div>
 
-        <div class="lib-primitive-row">
-          <button class="bg-white border border-charcoal-200 hover:border-charcoal-600 text-charcoal-600 font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
-            Secondary
-          </button>
-          <code class="lib-primitive-label">bg-white border-charcoal-200 rounded-full</code>
-        </div>
+          <div class="flex items-center justify-between py-5">
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-highlighter-200 text-charcoal-600 hover:bg-highlighter-100 transition-colors cursor-pointer">Highlighter (promo)</button>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-highlighter-200 text-charcoal-600 hover:bg-highlighter-100 transition-colors">bg-highlighter-200 text-charcoal-600 rounded-lg px-6 py-3</code>
+          </div>
 
-        <div class="lib-primitive-row">
-          <button class="bg-highlighter-200 hover:bg-highlighter-300 text-charcoal-600 font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
-            Highlighter (promo)
-          </button>
-          <code class="lib-primitive-label">bg-highlighter-200 text-charcoal-600</code>
-        </div>
+          <div class="flex items-center justify-between py-5">
+            <button class="h-9 inline-flex items-center justify-center px-4 rounded-lg text-body-14 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors cursor-pointer">Small</button>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="h-9 inline-flex items-center justify-center px-4 rounded-lg text-body-14 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors">text-body-14 px-4 py-2 rounded-lg</code>
+          </div>
 
-        <div class="lib-primitive-row">
-          <button class="bg-blurple-500 hover:bg-blurple-600 text-white font-sans text-body-16 font-medium px-6 py-3 rounded-full transition-colors">
-            Blurple (quiz)
-          </button>
-          <code class="lib-primitive-label">bg-blurple-500 text-white</code>
-        </div>
+          <div class="flex items-center justify-between py-5">
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-charcoal-100 text-charcoal-300 cursor-not-allowed" disabled>Disabled</button>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-charcoal-100 text-charcoal-300 cursor-not-allowed">bg-charcoal-100 text-charcoal-300 cursor-not-allowed</code>
+          </div>
 
-        <div class="lib-primitive-row">
-          <button class="bg-charcoal-600 hover:bg-charcoal-500 text-white font-sans text-body-14 font-medium px-4 py-2 rounded-full transition-colors">
-            Small
-          </button>
-          <code class="lib-primitive-label">text-body-14 px-4 py-2</code>
-        </div>
+          <div class="flex items-center justify-between py-5">
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-blurple-500 text-white hover:bg-blurple-400 transition-colors cursor-pointer">Blurple (quiz)</button>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-blurple-500 text-white hover:bg-blurple-400 transition-colors">bg-blurple-500 text-white rounded-lg px-6 py-3</code>
+          </div>
 
-        <div class="lib-primitive-row">
-          <button class="bg-charcoal-600 hover:bg-charcoal-500 text-white font-sans text-body-18 font-medium px-8 py-4 rounded-full transition-colors">
-            Large
-          </button>
-          <code class="lib-primitive-label">text-body-18 px-8 py-4</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <button class="underline underline-offset-4 text-charcoal-600 font-sans text-body-16 font-medium px-2 py-2">
-            Text link
-          </button>
-          <code class="lib-primitive-label">underline text-charcoal-600</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <button disabled class="bg-charcoal-200 text-charcoal-400 font-sans text-body-16 font-medium px-6 py-3 rounded-full cursor-not-allowed">
-            Disabled
-          </button>
-          <code class="lib-primitive-label">bg-charcoal-200 text-charcoal-400</code>
-        </div>
-      </section>
-
-      <!-- ============ BADGES ============ -->
-      <section class="lib-section" id="badges">
-        <h2 class="lib-h2">Badges</h2>
-        <p class="lib-body lib-body--muted">
-          Inline tags for promotions, status, and callouts. Used sparingly.
-        </p>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-highlighter-200 text-charcoal-600 text-eyebrow-sm">Up to 30% off</span>
-          <code class="lib-primitive-label">bg-highlighter-200 text-eyebrow-sm</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-bubblegum-200 text-charcoal-600 text-eyebrow-sm">We recommend</span>
-          <code class="lib-primitive-label">bg-bubblegum-200</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-blurple-100 text-charcoal-600 text-eyebrow-sm">New</span>
-          <code class="lib-primitive-label">bg-blurple-100</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-ice-100 text-charcoal-600 text-eyebrow-sm">Cold brew</span>
-          <code class="lib-primitive-label">bg-ice-100</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded bg-charcoal-50 text-charcoal-500 text-eyebrow-sm">Sold out</span>
-          <code class="lib-primitive-label">bg-charcoal-50 text-charcoal-500</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-2.5 py-1 rounded-full border border-charcoal-200 text-charcoal-600 text-eyebrow-sm bg-white">Decaf</span>
-          <code class="lib-primitive-label">rounded-full border-charcoal-200</code>
         </div>
       </section>
 
-      <!-- ============ INPUTS ============ -->
-      <section class="lib-section" id="inputs">
-        <h2 class="lib-h2">Inputs</h2>
-        <p class="lib-body lib-body--muted">
-          Trade inputs pull from the product-dropdown trigger style: white background, charcoal-600 border, 16px radius, generous padding. Same dimensions across text, email, and search.
-        </p>
-
-        <div class="lib-primitive-stack">
-          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">
-            Email
-            <input type="email" placeholder="you@example.com" class="mt-2 w-full bg-white border border-charcoal-600 rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600 placeholder:text-charcoal-400 focus:outline-none focus:ring-2 focus:ring-charcoal-600 focus:ring-offset-1" />
-          </label>
-          <code class="lib-primitive-label">border-charcoal-600 rounded-[16px] px-6 py-[14px]</code>
+      <!-- ─── BADGES ─── -->
+      <section id="badges" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Badges</h2>
+          <p class="text-body-14 text-charcoal-400">Pill labels for product attributes, lifecycle states, and certification tags.</p>
         </div>
+        <div class="divide-y divide-charcoal-100">
 
-        <div class="lib-primitive-stack">
-          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">
-            Search
-            <input type="search" placeholder="Search coffees…" class="mt-2 w-full bg-charcoal-50 border-0 rounded-full px-6 py-[12px] text-[14px] leading-relaxed text-charcoal-600 placeholder:text-charcoal-400 focus:outline-none focus:ring-2 focus:ring-charcoal-600 focus:ring-offset-1" />
-          </label>
-          <code class="lib-primitive-label">bg-charcoal-50 rounded-full</code>
-        </div>
+          <div class="flex items-center justify-between py-5">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-charcoal-100 text-charcoal-600">Certification</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-charcoal-100 text-charcoal-600">bg-charcoal-100 text-charcoal-600 rounded-full</code>
+          </div>
 
-        <div class="lib-primitive-stack">
-          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">
-            Error state
-            <input type="text" value="invalid value" class="mt-2 w-full bg-white border border-roast rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600 focus:outline-none" />
-          </label>
-          <code class="lib-primitive-label">border-roast (error)</code>
-        </div>
+          <div class="flex items-center justify-between py-5">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-blurple-50 text-blurple-500">New Arrival</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-blurple-50 text-blurple-500">bg-blurple-50 text-blurple-500 rounded-full</code>
+          </div>
 
-        <div class="lib-primitive-stack">
-          <label class="block text-[14px] font-semibold leading-relaxed text-charcoal-400 mb-2">
-            Disabled
-            <input type="text" value="locked" disabled class="mt-2 w-full bg-charcoal-50 border border-charcoal-200 rounded-[16px] px-6 py-[14px] text-[16px] text-charcoal-400" />
-          </label>
-          <code class="lib-primitive-label">bg-charcoal-50 border-charcoal-200</code>
+          <div class="flex items-center justify-between py-5">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-ice-200 text-charcoal-600">Limited Run</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-ice-200 text-charcoal-600">bg-ice-200 text-charcoal-600 rounded-full</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-bubblegum-50 text-bubblegum-500">Fan Favorite</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-bubblegum-50 text-bubblegum-500">bg-bubblegum-50 text-bubblegum-500 rounded-full</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-highlighter-200 text-charcoal-600">Promo</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-highlighter-200 text-charcoal-600">bg-highlighter-200 text-charcoal-600 rounded-full</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 border border-roast text-roast">Roast Origin</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="inline-flex items-center px-3 py-1 rounded-full text-body-12 border border-roast text-roast">border-roast text-roast rounded-full</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-trade-utility/10 text-trade-utility">Organic</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-trade-utility/10 text-trade-utility">bg-trade-utility/10 text-trade-utility rounded-full</code>
+          </div>
+
         </div>
       </section>
 
-      <!-- ============ DROPDOWNS ============ -->
-      <section class="lib-section" id="dropdowns">
-        <h2 class="lib-h2">Dropdowns</h2>
-        <p class="lib-body lib-body--muted">
-          Two variants from <code>snippets/product-dropdown.liquid</code>: default for PDP variant selection, pill for cadence/frequency selectors.
-        </p>
-
-        <div class="lib-primitive-stack">
-          <p class="text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">Bag size</p>
-          <button class="w-full flex items-center justify-between bg-white border border-charcoal-600 rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600">
-            <span>12 oz · Standard</span>
-            <svg class="w-5 h-[11px] flex-shrink-0 ml-4" viewBox="0 0 20 11" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.2946 0.372C19.4573 0.5347 19.4573 0.7985 19.2946 0.9613L10.1279 10.128C10.0498 10.2061 9.9438 10.25 9.8333 10.25C9.7228 10.25 9.6168 10.2061 9.5387 10.128L0.372 0.9613C0.2093 0.7985 0.2093 0.5347 0.372 0.372C0.5347 0.2093 0.7986 0.2093 0.9613 0.372L9.8333 9.244L18.7053 0.372C18.868 0.2093 19.1319 0.2093 19.2946 0.372Z" fill="#252525" stroke="#252525" stroke-width="0.5"/></svg>
-          </button>
-          <code class="lib-primitive-label">border-charcoal-600 rounded-[16px] — default</code>
+      <!-- ─── INPUTS ─── -->
+      <section id="inputs" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Inputs</h2>
+          <p class="text-body-14 text-charcoal-400">Text fields with consistent height (56px), border-radius lg, and charcoal-600 focus ring.</p>
         </div>
+        <div class="divide-y divide-charcoal-100">
 
-        <div class="lib-primitive-stack">
-          <p class="text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">Delivery cadence</p>
-          <button class="w-full flex items-center justify-between bg-charcoal-50 rounded-full px-6 py-[14px] text-[14px] leading-relaxed text-charcoal-600">
-            <span>Every 2 weeks (most popular)</span>
-            <svg class="w-5 h-[11px] flex-shrink-0 ml-4" viewBox="0 0 20 11" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.2946 0.372C19.4573 0.5347 19.4573 0.7985 19.2946 0.9613L10.1279 10.128C10.0498 10.2061 9.9438 10.25 9.8333 10.25C9.7228 10.25 9.6168 10.2061 9.5387 10.128L0.372 0.9613C0.2093 0.7985 0.2093 0.5347 0.372 0.372C0.5347 0.2093 0.7986 0.2093 0.9613 0.372L9.8333 9.244L18.7053 0.372C18.868 0.2093 19.1319 0.2093 19.2946 0.372Z" fill="#7A7A7F" stroke="#7A7A7F" stroke-width="0.5"/></svg>
-          </button>
-          <code class="lib-primitive-label">bg-charcoal-50 rounded-full — pill</code>
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs">
+              <input type="text" placeholder="Email address" class="w-full h-14 px-4 bg-surface-white border border-charcoal-200 rounded-lg text-body-16 text-charcoal-600 placeholder:text-charcoal-300 focus:border-charcoal-600 focus:outline-none transition-colors" />
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-14 px-4 bg-surface-white border border-charcoal-200 rounded-lg text-body-16 text-charcoal-600 placeholder:text-charcoal-300 focus:border-charcoal-600 focus:outline-none transition-colors">border-charcoal-200 focus:border-charcoal-600 rounded-lg</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs">
+              <input type="text" placeholder="Error state" class="w-full h-14 px-4 bg-surface-white border border-red rounded-lg text-body-16 text-charcoal-600 placeholder:text-charcoal-300 focus:border-red focus:outline-none" />
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-14 px-4 bg-surface-white border border-red rounded-lg text-body-16 text-charcoal-600 placeholder:text-charcoal-300 focus:border-red focus:outline-none">border-red focus:border-red rounded-lg</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs">
+              <input type="text" placeholder="Disabled" disabled class="w-full h-14 px-4 bg-charcoal-50 border border-charcoal-100 rounded-lg text-body-16 text-charcoal-300 cursor-not-allowed" />
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-14 px-4 bg-charcoal-50 border border-charcoal-100 rounded-lg text-body-16 text-charcoal-300 cursor-not-allowed">bg-charcoal-50 border-charcoal-100 cursor-not-allowed</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs relative">
+              <input type="text" placeholder="With icon" class="w-full h-14 pl-11 pr-4 bg-surface-white border border-charcoal-200 rounded-lg text-body-16 text-charcoal-600 placeholder:text-charcoal-300 focus:border-charcoal-600 focus:outline-none transition-colors" />
+              <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-14 pl-11 pr-4 bg-surface-white border border-charcoal-200 rounded-lg text-body-16 placeholder:text-charcoal-300 focus:border-charcoal-600 focus:outline-none transition-colors">pl-11 pr-4 with icon</code>
+          </div>
+
         </div>
+      </section>
 
-        <div class="lib-primitive-stack">
-          <p class="text-[14px] font-semibold leading-relaxed text-charcoal-600 mb-2">Open state (panel visible)</p>
-          <div class="relative">
-            <button class="w-full flex items-center justify-between bg-white border border-charcoal-600 rounded-[16px] px-6 py-[14px] text-[16px] leading-normal text-charcoal-600">
-              <span>Whole bean</span>
-              <svg class="w-5 h-[11px] flex-shrink-0 ml-4 rotate-180" viewBox="0 0 20 11" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.2946 0.372C19.4573 0.5347 19.4573 0.7985 19.2946 0.9613L10.1279 10.128C10.0498 10.2061 9.9438 10.25 9.8333 10.25C9.7228 10.25 9.6168 10.2061 9.5387 10.128L0.372 0.9613C0.2093 0.7985 0.2093 0.5347 0.372 0.372C0.5347 0.2093 0.7986 0.2093 0.9613 0.372L9.8333 9.244L18.7053 0.372C18.868 0.2093 19.1319 0.2093 19.2946 0.372Z" fill="#252525" stroke="#252525" stroke-width="0.5"/></svg>
+      <!-- ─── DROPDOWNS ─── -->
+      <section id="dropdowns" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Dropdowns</h2>
+          <p class="text-body-14 text-charcoal-400">Native select element styled to match the input system.</p>
+        </div>
+        <div class="divide-y divide-charcoal-100">
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs relative">
+              <select class="w-full h-14 px-4 bg-white border border-charcoal-200 rounded-lg text-body-16 text-charcoal-600 appearance-none focus:border-charcoal-600 focus:outline-none transition-colors cursor-pointer">
+                <option>Select grind size</option>
+                <option>Whole Bean</option>
+                <option>Coarse</option>
+                <option>Medium Coarse</option>
+                <option>Medium</option>
+                <option>Fine</option>
+              </select>
+              <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-14 px-4 bg-white border border-charcoal-200 rounded-lg text-body-16 text-charcoal-600 appearance-none focus:border-charcoal-600 focus:outline-none transition-colors">appearance-none border-charcoal-200 rounded-lg</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs relative">
+              <select disabled class="w-full h-14 px-4 bg-charcoal-50 border border-charcoal-100 rounded-lg text-body-16 text-charcoal-300 appearance-none cursor-not-allowed">
+                <option>Disabled select</option>
+              </select>
+              <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-14 px-4 bg-charcoal-50 border border-charcoal-100 rounded-lg text-body-16 text-charcoal-300 appearance-none cursor-not-allowed">bg-charcoal-50 text-charcoal-300 cursor-not-allowed</code>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── SELECTORS ─── -->
+      <section id="selectors" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Selectors</h2>
+          <p class="text-body-14 text-charcoal-400">Option buttons for bag size, plan frequency, and grind selection.</p>
+        </div>
+        <div class="divide-y divide-charcoal-100">
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex gap-2">
+              <button class="flex items-center justify-center px-5 py-3 rounded-lg border border-charcoal-200 text-body-14 text-charcoal-600 cursor-pointer hover:border-charcoal-400 transition-colors">6 oz</button>
+              <button class="flex items-center justify-center px-5 py-3 rounded-lg border border-charcoal-600 bg-charcoal-50 text-body-14 text-charcoal-600 cursor-pointer font-medium">8 oz</button>
+              <button class="flex items-center justify-center px-5 py-3 rounded-lg border border-charcoal-200 text-body-14 text-charcoal-600 cursor-pointer hover:border-charcoal-400 transition-colors">12 oz</button>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="flex items-center justify-center px-5 py-3 rounded-lg border border-charcoal-600 bg-charcoal-50 text-body-14 text-charcoal-600 font-medium">border-charcoal-600 bg-charcoal-50 (selected)</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex gap-2">
+              <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-charcoal-200 cursor-pointer hover:border-charcoal-400 transition-colors">
+                <input type="radio" name="plan" class="w-4 h-4 accent-charcoal-600"> <span class="text-body-14">Every week</span>
+              </label>
+              <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-charcoal-600 bg-charcoal-50 cursor-pointer">
+                <input type="radio" name="plan" checked class="w-4 h-4 accent-charcoal-600"> <span class="text-body-14 font-medium">Every 2 weeks</span>
+              </label>
+              <label class="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-charcoal-200 cursor-pointer hover:border-charcoal-400 transition-colors">
+                <input type="radio" name="plan" class="w-4 h-4 accent-charcoal-600"> <span class="text-body-14">Monthly</span>
+              </label>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="flex items-center gap-2.5 px-4 py-3 rounded-lg border border-charcoal-600 bg-charcoal-50">radio + border-charcoal-600</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="grid grid-cols-3 gap-2 max-w-xs w-full">
+              <button class="flex flex-col items-center gap-1 p-3 rounded-lg border border-charcoal-200 text-body-12 text-charcoal-500 cursor-pointer hover:border-charcoal-400 transition-colors">
+                <span class="text-lg">☕</span>Whole Bean
+              </button>
+              <button class="flex flex-col items-center gap-1 p-3 rounded-lg border border-charcoal-600 bg-charcoal-50 text-body-12 text-charcoal-600 cursor-pointer font-medium">
+                <span class="text-lg">⚙️</span>Medium
+              </button>
+              <button class="flex flex-col items-center gap-1 p-3 rounded-lg border border-charcoal-200 text-body-12 text-charcoal-500 cursor-pointer hover:border-charcoal-400 transition-colors">
+                <span class="text-lg">🔩</span>Fine
+              </button>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="flex flex-col items-center gap-1 p-3 rounded-lg border border-charcoal-600 bg-charcoal-50 text-body-12 text-charcoal-600 font-medium">icon selector grid</code>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── CHIPS & TAGS ─── -->
+      <section id="chips-tags" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Chips & tags</h2>
+          <p class="text-body-14 text-charcoal-400">Filter chips for collection pages. Removable tags for selections.</p>
+        </div>
+        <div class="divide-y divide-charcoal-100">
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex gap-2 flex-wrap">
+              <button class="inline-flex items-center px-4 py-2 rounded-full border border-charcoal-200 text-body-14 text-charcoal-600 cursor-pointer hover:border-charcoal-400 transition-colors">Light</button>
+              <button class="inline-flex items-center px-4 py-2 rounded-full border border-charcoal-600 bg-charcoal-600 text-body-14 text-white cursor-pointer">Medium</button>
+              <button class="inline-flex items-center px-4 py-2 rounded-full border border-charcoal-200 text-body-14 text-charcoal-600 cursor-pointer hover:border-charcoal-400 transition-colors">Dark</button>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="inline-flex items-center px-4 py-2 rounded-full border border-charcoal-600 bg-charcoal-600 text-body-14 text-white">bg-charcoal-600 text-white rounded-full (active)</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex gap-2 flex-wrap">
+              <button class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-charcoal-100 text-body-12 text-charcoal-600 cursor-pointer hover:bg-charcoal-200 transition-colors">
+                Ethiopia
+                <svg class="w-3 h-3 text-charcoal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+              <button class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-charcoal-100 text-body-12 text-charcoal-600 cursor-pointer hover:bg-charcoal-200 transition-colors">
+                Light Roast
+                <svg class="w-3 h-3 text-charcoal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-charcoal-100 text-body-12 text-charcoal-600">bg-charcoal-100 rounded-full (removable)</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex gap-2 flex-wrap">
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-blurple-50 border border-blurple-200 text-body-12 text-blurple-500">Fruity</span>
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-highlighter-100 border border-highlighter-200 text-body-12 text-charcoal-600">Nutty</span>
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-bubblegum-50 border border-bubblegum-200 text-body-12 text-bubblegum-500">Floral</span>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="inline-flex items-center px-3 py-1 rounded-full bg-blurple-50 border border-blurple-200 text-body-12 text-blurple-500">flavor note tags</code>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── ACCORDIONS ─── -->
+      <section id="accordions" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Accordions</h2>
+          <p class="text-body-14 text-charcoal-400">Used for product details, brewing guides, and FAQ sections. Click to expand.</p>
+        </div>
+        <div class="mt-0">
+
+          <div class="border-b border-charcoal-100">
+            <button onclick="toggleAccordion(this)" class="flex items-center justify-between w-full py-5 text-body-16 font-medium text-charcoal-600 text-left cursor-pointer">
+              <span>Tasting notes</span>
+              <svg class="w-4 h-4 text-charcoal-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
-            <div class="absolute z-50 w-full mt-2 bg-white border border-charcoal-200 rounded-[16px] overflow-hidden">
-              <div class="px-6 py-4 text-[16px] text-charcoal-600 bg-charcoal-100">Whole bean</div>
-              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">Drip</div>
-              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">Pour over</div>
-              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">French press</div>
-              <div class="px-6 py-4 text-[16px] text-charcoal-600 hover:bg-charcoal-100">Espresso</div>
+            <div class="accordion-content pb-4">
+              <p class="text-body-14 text-charcoal-500">Bright citrus, jasmine, and stone fruit. A clean, sweet finish with high clarity. Best enjoyed as filter.</p>
             </div>
           </div>
-          <code class="lib-primitive-label">+ open panel: border-charcoal-200 rounded-[16px]</code>
-        </div>
-      </section>
 
-      <!-- ============ SELECTORS (checkbox / radio / toggle) ============ -->
-      <section class="lib-section" id="selectors">
-        <h2 class="lib-h2">Selectors</h2>
-        <p class="lib-body lib-body--muted">
-          Checkboxes, radios, and toggles. Tailwind defaults restyled with the charcoal accent — Trade's brand color stays subtle in form controls.
-        </p>
-
-        <div class="lib-primitive-row">
-          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600">
-            <input type="checkbox" checked class="w-5 h-5 rounded border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
-            Subscribe and save
-          </label>
-          <code class="lib-primitive-label">w-5 h-5 rounded border-charcoal-400</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600">
-            <input type="checkbox" class="w-5 h-5 rounded border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
-            One-time purchase
-          </label>
-          <code class="lib-primitive-label">unchecked default</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600">
-            <input type="radio" name="grind" checked class="w-5 h-5 border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
-            Whole bean
-          </label>
-          <label class="inline-flex items-center gap-2 cursor-pointer text-[14px] text-charcoal-600 ml-6">
-            <input type="radio" name="grind" class="w-5 h-5 border-charcoal-400 text-charcoal-600 focus:ring-charcoal-600" />
-            Ground
-          </label>
-          <code class="lib-primitive-label">radio · grouped</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <button type="button" role="switch" aria-checked="true" class="relative inline-flex h-6 w-11 items-center rounded-full bg-charcoal-600 transition-colors">
-            <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow translate-x-5 transition-transform"></span>
-          </button>
-          <span class="text-[14px] text-charcoal-600">Toggle · on</span>
-          <code class="lib-primitive-label">bg-charcoal-600 (on)</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <button type="button" role="switch" aria-checked="false" class="relative inline-flex h-6 w-11 items-center rounded-full bg-charcoal-200 transition-colors">
-            <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow translate-x-0.5 transition-transform"></span>
-          </button>
-          <span class="text-[14px] text-charcoal-600">Toggle · off</span>
-          <code class="lib-primitive-label">bg-charcoal-200 (off)</code>
-        </div>
-      </section>
-
-      <!-- ============ CHIPS & TAGS ============ -->
-      <section class="lib-section" id="chips">
-        <h2 class="lib-h2">Chips &amp; tags</h2>
-        <p class="lib-body lib-body--muted">
-          Outlined chips for origins / flavor notes (find-my-match style), filled for active selections, removable for filters.
-        </p>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-3 py-1.5 border border-charcoal-200 rounded-lg text-[13px] text-charcoal-600 bg-white">Brazil</span>
-          <span class="inline-flex items-center px-3 py-1.5 border border-charcoal-200 rounded-lg text-[13px] text-charcoal-600 bg-white">Ethiopia</span>
-          <span class="inline-flex items-center px-3 py-1.5 border border-charcoal-200 rounded-lg text-[13px] text-charcoal-600 bg-white">Colombia</span>
-          <code class="lib-primitive-label">origin chip · border-charcoal-200 rounded-lg</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center px-3 py-1.5 bg-charcoal-600 text-white rounded-lg text-[13px]">Dark roast</span>
-          <span class="inline-flex items-center px-3 py-1.5 bg-charcoal-600 text-white rounded-lg text-[13px]">Espresso</span>
-          <code class="lib-primitive-label">selected · bg-charcoal-600 text-white</code>
-        </div>
-
-        <div class="lib-primitive-row">
-          <span class="inline-flex items-center gap-1.5 pl-3 pr-2 py-1.5 bg-charcoal-50 rounded-full text-[13px] text-charcoal-600">
-            Light roast
-            <button class="w-4 h-4 flex items-center justify-center rounded-full hover:bg-charcoal-200" aria-label="Remove">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M2 2 L22 22 M22 2 L2 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <div class="border-b border-charcoal-100">
+            <button onclick="toggleAccordion(this)" class="flex items-center justify-between w-full py-5 text-body-16 font-medium text-charcoal-600 text-left cursor-pointer">
+              <span>Brew guide</span>
+              <svg class="w-4 h-4 text-charcoal-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
-          </span>
-          <code class="lib-primitive-label">filter chip · pl-3 pr-2 rounded-full</code>
-        </div>
-      </section>
-
-      <!-- ============ ACCORDIONS ============ -->
-      <section class="lib-section" id="accordions">
-        <h2 class="lib-h2">Accordions</h2>
-        <p class="lib-body lib-body--muted">
-          From <code>snippets/pdp-accordion-block.liquid</code>. Top border, 92px header, plus/x icon swap on toggle.
-        </p>
-
-        <div class="lib-primitive-stack">
-          <div class="border-t border-b border-charcoal-400 bg-white">
-            <button class="w-full flex items-center justify-between h-[92px] px-2">
-              <span class="font-sans text-lg font-semibold text-charcoal-600 tracking-[-0.54px]">Flavor Profile</span>
-              <div class="w-6 h-6 shrink-0 flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2412 12.2586V22.7586C13.2412 23.4442 12.9054 24 12.4912 24C12.077 24 11.7412 23.4442 11.7412 22.7586V12.2586H1.24138C0.555784 12.2586 0 11.9228 0 11.5086C0 11.0944 0.555784 10.7586 1.24138 10.7586H11.7412V1.24138C11.7412 0.555784 12.077 0 12.4912 0C12.9054 0 13.2412 0.555784 13.2412 1.24138V10.7586H22.7586C23.4442 10.7586 24 11.0944 24 11.5086C24 11.9228 23.4442 12.2586 22.7586 12.2586H13.2412Z" fill="currentColor"/></svg>
-              </div>
-            </button>
-          </div>
-          <code class="lib-primitive-label">closed · h-[92px] · plus icon</code>
-        </div>
-
-        <div class="lib-primitive-stack">
-          <div class="border-t border-b border-charcoal-400 bg-white">
-            <button class="w-full flex items-center justify-between h-[92px] px-2">
-              <span class="font-sans text-lg font-semibold text-charcoal-600 tracking-[-0.54px]">Origin &amp; Sourcing</span>
-              <div class="w-6 h-6 shrink-0 flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.7559 2.24408C22.0814 2.56951 22.0814 3.09715 21.7559 3.42259L3.42259 21.7559C3.09715 22.0814 2.56951 22.0814 2.24408 21.7559C1.91864 21.4305 1.91864 20.9028 2.24408 20.5774L20.5774 2.24408C20.9028 1.91864 21.4305 1.91864 21.7559 2.24408Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M2.24408 2.24408C2.56951 1.91864 3.09715 1.91864 3.42259 2.24408L21.7559 20.5774C22.0814 20.9028 22.0814 21.4305 21.7559 21.7559C21.4305 22.0814 20.9028 22.0814 20.5774 21.7559L2.24408 3.42259C1.91864 3.09715 1.91864 2.56951 2.24408 2.24408Z" fill="currentColor"/></svg>
-              </div>
-            </button>
-            <div class="pt-6 pb-12 px-2 pr-6">
-              <p class="text-[14px] text-charcoal-500 leading-relaxed">A balanced washed Ethiopia Yirgacheffe sourced direct from the Hama cooperative. Notes of citrus blossom, honeysuckle, and brown sugar.</p>
+            <div class="accordion-content pb-4">
+              <p class="text-body-14 text-charcoal-500">Ratio 1:16 · Temp 93°C · Grind medium-coarse · Brew time 4 min.</p>
             </div>
           </div>
-          <code class="lib-primitive-label">open · x icon · pt-6 pb-12 content</code>
+
+          <div class="border-b border-charcoal-100">
+            <button onclick="toggleAccordion(this)" class="flex items-center justify-between w-full py-5 text-body-16 font-medium text-charcoal-600 text-left cursor-pointer">
+              <span>About the roaster</span>
+              <svg class="w-4 h-4 text-charcoal-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="accordion-content pb-4">
+              <p class="text-body-14 text-charcoal-500">Founded in 2014, this roaster focuses on single-origin lots from East Africa, sourcing direct from producers.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between py-5 mt-2">
+            <span class="text-body-12 text-charcoal-400">Trigger class</span>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="flex items-center justify-between w-full py-5 text-body-16 font-medium text-charcoal-600 text-left">flex justify-between py-5 text-body-16 font-medium</code>
+          </div>
+
         </div>
       </section>
 
-      <!-- ============ AVATARS ============ -->
-      <section class="lib-section" id="avatars">
-        <h2 class="lib-h2">Avatars</h2>
-        <p class="lib-body lib-body--muted">
-          Roaster profile circles from the swipeable-cards section. Sized small / medium / large.
-        </p>
-
-        <div class="lib-primitive-row">
-          <div class="w-8 h-8 rounded-full bg-blurple-200 flex items-center justify-center text-charcoal-600 text-eyebrow-xs font-semibold">RA</div>
-          <div class="w-12 h-12 rounded-full bg-highlighter-200 flex items-center justify-center text-charcoal-600 text-eyebrow-sm font-semibold">SP</div>
-          <div class="w-16 h-16 rounded-full bg-bubblegum-200 flex items-center justify-center text-charcoal-600 text-eyebrow-md font-semibold">DN</div>
-          <code class="lib-primitive-label">rounded-full · w-8 / w-12 / w-16</code>
+      <!-- ─── AVATARS ─── -->
+      <section id="avatars" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Avatars</h2>
+          <p class="text-body-14 text-charcoal-400">User and roaster avatars in three sizes.</p>
         </div>
+        <div class="divide-y divide-charcoal-100">
 
-        <div class="lib-primitive-row">
-          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow flex items-center justify-center bg-charcoal-100">
-            <span class="text-charcoal-600 text-eyebrow-sm font-semibold">PR</span>
+          <div class="flex items-center justify-between py-5">
+            <div class="flex items-center gap-4">
+              <div class="w-8 h-8 rounded-full bg-charcoal-600 text-white flex items-center justify-center text-body-12 font-medium">NJ</div>
+              <div class="text-body-14 text-charcoal-500">Small — 32px</div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="w-8 h-8 rounded-full bg-charcoal-600 text-white flex items-center justify-center text-body-12 font-medium">w-8 h-8 rounded-full</code>
           </div>
-          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow flex items-center justify-center bg-charcoal-100 -ml-3">
-            <span class="text-charcoal-600 text-eyebrow-sm font-semibold">WS</span>
-          </div>
-          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow flex items-center justify-center bg-charcoal-100 -ml-3">
-            <span class="text-charcoal-600 text-eyebrow-sm font-semibold">AI</span>
-          </div>
-          <code class="lib-primitive-label">stacked · -ml-3 border-2 border-white</code>
-        </div>
-      </section>
 
-      <!-- ============ PROGRESS ============ -->
-      <section class="lib-section" id="progress">
-        <h2 class="lib-h2">Progress</h2>
-        <p class="lib-body lib-body--muted">
-          Onboarding progress bar pattern from <code>sections/onboarding-step-progress.liquid</code>. 8px height, rounded, animated fill. Stepper variant for multi-stage flows.
-        </p>
-
-        <div class="lib-primitive-stack">
-          <p class="text-eyebrow-sm text-charcoal-500 mb-2">25%</p>
-          <div class="h-2 w-full bg-charcoal-100 rounded-md overflow-hidden">
-            <div class="h-full bg-charcoal-600 rounded-md" style="width:25%"></div>
+          <div class="flex items-center justify-between py-5">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-charcoal-600 text-white flex items-center justify-center text-body-14 font-medium">NJ</div>
+              <div class="text-body-14 text-charcoal-500">Medium — 40px</div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="w-10 h-10 rounded-full bg-charcoal-600 text-white flex items-center justify-center text-body-14 font-medium">w-10 h-10 rounded-full</code>
           </div>
-          <code class="lib-primitive-label">h-2 bg-charcoal-100 · fill bg-charcoal-600</code>
-        </div>
 
-        <div class="lib-primitive-stack">
-          <p class="text-eyebrow-sm text-charcoal-500 mb-2">75%</p>
-          <div class="h-2 w-full bg-charcoal-100 rounded-md overflow-hidden">
-            <div class="h-full bg-highlighter-300 rounded-md" style="width:75%"></div>
+          <div class="flex items-center justify-between py-5">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-full bg-roast text-white flex items-center justify-center text-body-18 font-medium">NJ</div>
+              <div class="text-body-14 text-charcoal-500">Large — 56px (roast accent)</div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="w-14 h-14 rounded-full bg-roast text-white flex items-center justify-center text-body-18 font-medium">w-14 h-14 rounded-full bg-roast</code>
           </div>
-          <code class="lib-primitive-label">h-2 · fill bg-highlighter-300</code>
-        </div>
 
-        <div class="lib-primitive-stack">
-          <p class="text-eyebrow-sm text-charcoal-500 mb-2">Stepper · step 2 of 4</p>
-          <div class="flex items-center gap-2">
-            <div class="flex-1 h-1 rounded-full bg-charcoal-600"></div>
-            <div class="flex-1 h-1 rounded-full bg-charcoal-600"></div>
-            <div class="flex-1 h-1 rounded-full bg-charcoal-100"></div>
-            <div class="flex-1 h-1 rounded-full bg-charcoal-100"></div>
+          <div class="flex items-center justify-between py-5">
+            <div class="flex items-center gap-4">
+              <div class="flex -space-x-2">
+                <div class="w-8 h-8 rounded-full bg-blurple-500 text-white flex items-center justify-center text-body-12 font-medium ring-2 ring-white">A</div>
+                <div class="w-8 h-8 rounded-full bg-bubblegum-500 text-white flex items-center justify-center text-body-12 font-medium ring-2 ring-white">B</div>
+                <div class="w-8 h-8 rounded-full bg-charcoal-600 text-white flex items-center justify-center text-body-12 font-medium ring-2 ring-white">+3</div>
+              </div>
+              <div class="text-body-14 text-charcoal-500">Avatar stack</div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0 ml-8" data-copy="flex -space-x-2">flex -space-x-2 ring-2 ring-white</code>
           </div>
-          <code class="lib-primitive-label">stepper · 4 segments h-1</code>
+
         </div>
       </section>
 
-      <section class="lib-section">
-        <h2 class="lib-h2">Coming next</h2>
-        <p class="lib-body">
-          Modal / drawer scaffolds, loading spinners, tooltips, and icon library. Refresh the library once they're added.
-        </p>
-      </section>
-    </main>
+      <!-- ─── PROGRESS ─── -->
+      <section id="progress" class="mb-20">
+        <div class="border-b border-charcoal-200 pb-4 mb-0">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Progress</h2>
+          <p class="text-body-14 text-charcoal-400">Progress bars and step indicators for quiz flows and onboarding.</p>
+        </div>
+        <div class="divide-y divide-charcoal-100">
 
-    <script src="assets/script.js"></script>
-    <script>
-      document.querySelectorAll('.lib-primitive-row, .lib-primitive-stack').forEach(function (row) {
-        var label = row.querySelector('.lib-primitive-label');
-        if (!label) return;
-        row.addEventListener('click', function (e) {
-          if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
-          navigator.clipboard && navigator.clipboard.writeText(label.textContent.trim());
-          var prev = label.style.background;
-          label.style.background = '#ebff88';
-          setTimeout(function () { label.style.background = prev; }, 400);
-        });
-        row.style.cursor = 'pointer';
-      });
-    </script>
-  </body>
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs">
+              <div class="w-full h-2 bg-charcoal-100 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-charcoal-600 transition-all duration-300" style="width: 65%"></div>
+              </div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-2 bg-charcoal-100 rounded-full overflow-hidden">h-2 bg-charcoal-100 rounded-full</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs">
+              <div class="w-full h-1 bg-charcoal-100 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-blurple-500 transition-all duration-300" style="width: 40%"></div>
+              </div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-1 bg-charcoal-100 rounded-full overflow-hidden">h-1 bg-blurple-500 (quiz)</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-charcoal-600"></div>
+              <div class="w-6 h-px bg-charcoal-300"></div>
+              <div class="w-2 h-2 rounded-full bg-charcoal-600 ring-2 ring-charcoal-200 ring-offset-1"></div>
+              <div class="w-6 h-px bg-charcoal-100"></div>
+              <div class="w-2 h-2 rounded-full bg-charcoal-200"></div>
+              <div class="w-6 h-px bg-charcoal-100"></div>
+              <div class="w-2 h-2 rounded-full bg-charcoal-200"></div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-2 h-2 rounded-full bg-charcoal-600 ring-2 ring-charcoal-200 ring-offset-1">step dots — ring-2 ring-offset-1 (active)</code>
+          </div>
+
+          <div class="flex items-center justify-between py-5 gap-8">
+            <div class="flex-1 max-w-xs">
+              <div class="flex justify-between text-body-12 text-charcoal-400 mb-2">
+                <span>Step 3 of 7</span>
+                <span>43%</span>
+              </div>
+              <div class="w-full h-1.5 bg-charcoal-100 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-charcoal-600" style="width: 43%"></div>
+              </div>
+            </div>
+            <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors shrink-0" data-copy="w-full h-1.5 bg-charcoal-100 rounded-full overflow-hidden">labeled progress bar</code>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="nav.js"></script>
+  <script>
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('svg');
+      const isOpen = content.classList.contains('open');
+      content.classList.toggle('open', !isOpen);
+      icon.style.transform = isOpen ? '' : 'rotate(180deg)';
+    }
+  </script>
+</body>
 </html>

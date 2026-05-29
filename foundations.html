@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundations — Trade Component Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          sans: ['Inter', 'Helvetica', 'sans-serif'],
+          serif: ['GT Alpina', 'Georgia', 'serif'],
+          mono: ['Geist Mono', 'monospace'],
+        },
+        extend: {
+          spacing: { 15: '3.75rem', 21: '5.25rem', 22: '5.5rem', 25: '6.25rem', 30: '7.5rem' },
+          borderRadius: { 18: '18px', 20: '20px', 24: '24px', 28: '28px' },
+          colors: {
+            'charcoal-600': '#252525', 'charcoal-500': '#4F4F52', 'charcoal-400': '#7A7A7F',
+            'charcoal-300': '#B8B8BC', 'charcoal-200': '#D7D7DA', 'charcoal-100': '#ECECEE',
+            'charcoal-50': '#F7F7F8', 'surface-white': '#FFFFFF', 'surface-warm': '#F9F6F6',
+            'roast': '#9C3912', 'red': '#F45048', 'trade-utility': '#029C02',
+            'highlighter-200': '#EBFF88', 'highlighter-100': '#F3FFB9',
+            'blurple-500': '#687AFD', 'blurple-400': '#808EFF', 'blurple-300': '#9FAAFE',
+            'blurple-200': '#C7CDFE', 'blurple-50': '#E5E7FF',
+            'ice-300': '#B0DDF7', 'ice-200': '#C5E8FC',
+            'bubblegum-500': '#E07DE8', 'bubblegum-400': '#EB9BF2', 'bubblegum-300': '#EFAEF4',
+            'bubblegum-200': '#F7C5FB', 'bubblegum-50': '#FDF1FE',
+          },
+          fontSize: {
+            'eyebrow-lg': ['16px', { lineHeight: '1.5', letterSpacing: '2.56px', fontWeight: '500' }],
+            'eyebrow-md': ['14px', { lineHeight: '1.5', letterSpacing: '2.52px', fontWeight: '500' }],
+            'eyebrow-sm': ['12px', { lineHeight: '1.5', letterSpacing: '2.4px', fontWeight: '500' }],
+            'eyebrow-xs': ['11px', { lineHeight: '1.5', letterSpacing: '0.66px', fontWeight: '500' }],
+            'display-72': ['72px', { lineHeight: '0.98', letterSpacing: '-2.16px', fontWeight: '500' }],
+            'display-60': ['60px', { lineHeight: '1', letterSpacing: '-1.8px', fontWeight: '500' }],
+            'display-48': ['48px', { lineHeight: '1', letterSpacing: '-1.44px', fontWeight: '500' }],
+            'display-40': ['40px', { lineHeight: '1', letterSpacing: '-1.2px', fontWeight: '500' }],
+            'display-36': ['36px', { lineHeight: '1', letterSpacing: '-1.08px', fontWeight: '500' }],
+            'display-28': ['28px', { lineHeight: '1', letterSpacing: '-0.84px', fontWeight: '500' }],
+            'headline-44': ['44px', { lineHeight: '1.1', letterSpacing: '-0.2px', fontWeight: '700' }],
+            'headline-36': ['36px', { lineHeight: '1.1', letterSpacing: '-0.18px', fontWeight: '700' }],
+            'headline-32': ['32px', { lineHeight: '1.1', letterSpacing: '-0.2px', fontWeight: '700' }],
+            'headline-28': ['28px', { lineHeight: '1.1', letterSpacing: '-0.284px', fontWeight: '700' }],
+            'headline-24': ['24px', { lineHeight: '1.1', letterSpacing: '-0.42px', fontWeight: '700' }],
+            'headline-20': ['20px', { lineHeight: '1.12', letterSpacing: '-0.5px', fontWeight: '700' }],
+            'headline-18': ['18px', { lineHeight: '1.12', letterSpacing: '-0.54px', fontWeight: '700' }],
+            'body-24': ['24px', { lineHeight: '1.5', letterSpacing: '0.42px', fontWeight: '400' }],
+            'body-20': ['20px', { lineHeight: '1.5', letterSpacing: '0.16px', fontWeight: '400' }],
+            'body-18': ['18px', { lineHeight: '1.5', letterSpacing: '0.12px', fontWeight: '400' }],
+            'body-16': ['16px', { lineHeight: '1.5', letterSpacing: 'normal', fontWeight: '400' }],
+            'body-14': ['14px', { lineHeight: '1.6', letterSpacing: '-0.02px', fontWeight: '400' }],
+            'body-12': ['12px', { lineHeight: '1.6', letterSpacing: 'normal', fontWeight: '400' }],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @font-face { font-family: 'GT Alpina'; src: local('GT Alpina'), local('GT-Alpina'); font-weight: 100 900; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 48px; }
+    body { -webkit-font-smoothing: antialiased; }
+    [data-copy] { cursor: pointer; }
+    [data-copy]:hover { color: #252525 !important; }
+  </style>
+</head>
+<body class="bg-white font-sans text-charcoal-600">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 w-[240px] border-r border-charcoal-100 overflow-y-auto bg-white z-10 px-5 py-7"></aside>
+
+  <!-- Main -->
+  <main class="ml-[240px] min-h-screen">
+    <div class="px-16 py-14 max-w-[880px]">
+
+      <!-- Page header -->
+      <div class="mb-14">
+        <h1 class="text-headline-44 text-charcoal-600 mb-3">Foundations</h1>
+        <p class="text-body-18 text-charcoal-400">Atomic building blocks of the Trade design system. Tokens are available as Tailwind classes and SCSS variables — source of truth is <code class="text-body-14 bg-charcoal-50 px-1.5 py-0.5 rounded">tailwind.config.js</code>.</p>
+      </div>
+
+      <!-- Overview cards -->
+      <section id="overview" class="mb-20">
+        <div class="grid grid-cols-3 gap-4">
+          <a href="foundations.html#colors" class="p-5 border border-charcoal-100 rounded-xl hover:border-charcoal-300 transition-colors no-underline block">
+            <div class="flex gap-1.5 mb-4">
+              <div class="w-7 h-7 rounded-md bg-charcoal-600"></div>
+              <div class="w-7 h-7 rounded-md bg-blurple-500"></div>
+              <div class="w-7 h-7 rounded-md bg-highlighter-200"></div>
+              <div class="w-7 h-7 rounded-md bg-bubblegum-500"></div>
+            </div>
+            <div class="text-body-14 font-semibold text-charcoal-600 mb-1">Colors</div>
+            <div class="text-body-12 text-charcoal-400">7 palettes · 30+ tokens</div>
+          </a>
+          <a href="foundations.html#typography" class="p-5 border border-charcoal-100 rounded-xl hover:border-charcoal-300 transition-colors no-underline block">
+            <div class="mb-4 leading-none">
+              <span style="font-family:'GT Alpina',Georgia,serif;font-size:28px;font-weight:500;letter-spacing:-0.84px;color:#252525">Aa</span>
+            </div>
+            <div class="text-body-14 font-semibold text-charcoal-600 mb-1">Typography</div>
+            <div class="text-body-12 text-charcoal-400">3 typefaces · 20+ scales</div>
+          </a>
+          <a href="foundations.html#spacing" class="p-5 border border-charcoal-100 rounded-xl hover:border-charcoal-300 transition-colors no-underline block">
+            <div class="flex items-end gap-1 mb-4 h-7">
+              <div class="w-2.5 bg-charcoal-200 h-1"></div>
+              <div class="w-2.5 bg-charcoal-300 h-2"></div>
+              <div class="w-2.5 bg-charcoal-400 h-3.5"></div>
+              <div class="w-2.5 bg-charcoal-500 h-5"></div>
+              <div class="w-2.5 bg-charcoal-600 h-7"></div>
+            </div>
+            <div class="text-body-14 font-semibold text-charcoal-600 mb-1">Spacing & Radii</div>
+            <div class="text-body-12 text-charcoal-400">4px base + custom tokens</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section id="colors" class="mb-20">
+        <h2 class="text-headline-32 text-charcoal-600 mb-2">Colors</h2>
+        <p class="text-body-14 text-charcoal-400 mb-10">Use the Tailwind class name directly (e.g. <code class="bg-charcoal-50 px-1 py-0.5 rounded text-charcoal-600">bg-charcoal-600</code>, <code class="bg-charcoal-50 px-1 py-0.5 rounded text-charcoal-600">text-blurple-500</code>).</p>
+
+        <!-- Charcoal -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Charcoal — Primary</div>
+          <div class="flex gap-2 flex-wrap">
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-charcoal-600 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">charcoal-600</div><div class="text-[11px] text-charcoal-400">#252525</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-charcoal-500 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">charcoal-500</div><div class="text-[11px] text-charcoal-400">#4F4F52</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-charcoal-400 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">charcoal-400</div><div class="text-[11px] text-charcoal-400">#7A7A7F</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-charcoal-300 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">charcoal-300</div><div class="text-[11px] text-charcoal-400">#B8B8BC</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-charcoal-200 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">charcoal-200</div><div class="text-[11px] text-charcoal-400">#D7D7DA</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-charcoal-100 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">charcoal-100</div><div class="text-[11px] text-charcoal-400">#ECECEE</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-charcoal-50 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">charcoal-50</div><div class="text-[11px] text-charcoal-400">#F7F7F8</div></div>
+          </div>
+        </div>
+
+        <!-- Surface -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Surface — Backgrounds</div>
+          <div class="flex gap-2 flex-wrap">
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-surface-white mb-1.5 border border-charcoal-100"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">surface-white</div><div class="text-[11px] text-charcoal-400">#FFFFFF</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-surface-warm mb-1.5 border border-charcoal-100"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">surface-warm</div><div class="text-[11px] text-charcoal-400">#F9F6F6</div></div>
+          </div>
+        </div>
+
+        <!-- Brand -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Brand</div>
+          <div class="flex gap-2 flex-wrap">
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-roast mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">roast</div><div class="text-[11px] text-charcoal-400">#9C3912</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-red mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">red</div><div class="text-[11px] text-charcoal-400">#F45048</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-trade-utility mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">trade-utility</div><div class="text-[11px] text-charcoal-400">#029C02</div></div>
+          </div>
+        </div>
+
+        <!-- Blurple -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Blurple — Accent</div>
+          <div class="flex gap-2 flex-wrap">
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-blurple-500 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">blurple-500</div><div class="text-[11px] text-charcoal-400">#687AFD</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-blurple-400 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">blurple-400</div><div class="text-[11px] text-charcoal-400">#808EFF</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-blurple-300 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">blurple-300</div><div class="text-[11px] text-charcoal-400">#9FAAFE</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-blurple-200 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">blurple-200</div><div class="text-[11px] text-charcoal-400">#C7CDFE</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-blurple-50 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">blurple-50</div><div class="text-[11px] text-charcoal-400">#E5E7FF</div></div>
+          </div>
+        </div>
+
+        <!-- Ice -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Ice — Cool Accent</div>
+          <div class="flex gap-2 flex-wrap">
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-ice-300 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">ice-300</div><div class="text-[11px] text-charcoal-400">#B0DDF7</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-ice-200 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">ice-200</div><div class="text-[11px] text-charcoal-400">#C5E8FC</div></div>
+          </div>
+        </div>
+
+        <!-- Bubblegum -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Bubblegum — Playful Accent</div>
+          <div class="flex gap-2 flex-wrap">
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-bubblegum-500 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">bubblegum-500</div><div class="text-[11px] text-charcoal-400">#E07DE8</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-bubblegum-400 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">bubblegum-400</div><div class="text-[11px] text-charcoal-400">#EB9BF2</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-bubblegum-300 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">bubblegum-300</div><div class="text-[11px] text-charcoal-400">#EFAEF4</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-bubblegum-200 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">bubblegum-200</div><div class="text-[11px] text-charcoal-400">#F7C5FB</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-bubblegum-50 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">bubblegum-50</div><div class="text-[11px] text-charcoal-400">#FDF1FE</div></div>
+          </div>
+        </div>
+
+        <!-- Highlighter -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Highlighter — Promo / Emphasis</div>
+          <div class="flex gap-2 flex-wrap">
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-highlighter-200 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">highlighter-200</div><div class="text-[11px] text-charcoal-400">#EBFF88</div></div>
+            <div class="text-center"><div class="w-14 h-14 rounded-lg bg-highlighter-100 mb-1.5 border border-black/5"></div><div class="text-[11px] font-mono text-charcoal-600 leading-tight">highlighter-100</div><div class="text-[11px] text-charcoal-400">#F3FFB9</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section id="typography" class="mb-20">
+        <h2 class="text-headline-32 text-charcoal-600 mb-2">Typography</h2>
+        <p class="text-body-14 text-charcoal-400 mb-10">Three typefaces — Inter (sans), GT Alpina (serif), Geist Mono (mono). Click any row to copy the class string.</p>
+
+        <!-- Eyebrow -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Eyebrow — font-mono</div>
+          <div class="divide-y divide-charcoal-100">
+            <div class="flex items-center justify-between py-5 group">
+              <span class="font-mono text-eyebrow-lg text-charcoal-600">Eyebrow Large</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors" data-copy="font-mono text-eyebrow-lg">font-mono text-eyebrow-lg</code>
+            </div>
+            <div class="flex items-center justify-between py-5 group">
+              <span class="font-mono text-eyebrow-md text-charcoal-600">Eyebrow Medium</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors" data-copy="font-mono text-eyebrow-md">font-mono text-eyebrow-md</code>
+            </div>
+            <div class="flex items-center justify-between py-5 group">
+              <span class="font-mono text-eyebrow-sm text-charcoal-600">Eyebrow Small</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors" data-copy="font-mono text-eyebrow-sm">font-mono text-eyebrow-sm</code>
+            </div>
+            <div class="flex items-center justify-between py-5 group">
+              <span class="font-mono text-eyebrow-xs text-charcoal-600">Eyebrow XS</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors" data-copy="font-mono text-eyebrow-xs">font-mono text-eyebrow-xs</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Display — font-serif (GT Alpina)</div>
+          <div class="divide-y divide-charcoal-100">
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-serif text-display-72 text-charcoal-600">Display 72</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="font-serif text-display-72">font-serif text-display-72</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-serif text-display-60 text-charcoal-600">Display 60</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="font-serif text-display-60">font-serif text-display-60</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-serif text-display-48 text-charcoal-600">Display 48</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="font-serif text-display-48">font-serif text-display-48</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-serif text-display-40 text-charcoal-600">Display 40</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="font-serif text-display-40">font-serif text-display-40</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-serif text-display-36 text-charcoal-600">Display 36</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="font-serif text-display-36">font-serif text-display-36</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-serif text-display-28 text-charcoal-600">Display 28</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="font-serif text-display-28">font-serif text-display-28</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Headline -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Headline — font-sans (Inter Bold)</div>
+          <div class="divide-y divide-charcoal-100">
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-sans text-headline-44 text-charcoal-600">Headline 44</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-headline-44">text-headline-44</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-sans text-headline-36 text-charcoal-600">Headline 36</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-headline-36">text-headline-36</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-sans text-headline-32 text-charcoal-600">Headline 32</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-headline-32">text-headline-32</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-sans text-headline-28 text-charcoal-600">Headline 28</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-headline-28">text-headline-28</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-sans text-headline-24 text-charcoal-600">Headline 24</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-headline-24">text-headline-24</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-sans text-headline-20 text-charcoal-600">Headline 20</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-headline-20">text-headline-20</code>
+            </div>
+            <div class="flex items-baseline justify-between py-5 group">
+              <span class="font-sans text-headline-18 text-charcoal-600">Headline 18</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-headline-18">text-headline-18</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="mb-10">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-3">Body — font-sans (Inter Regular)</div>
+          <div class="divide-y divide-charcoal-100">
+            <div class="flex items-center justify-between py-4 group">
+              <span class="text-body-24 text-charcoal-600">The quick brown fox — Body 24</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-body-24">text-body-24</code>
+            </div>
+            <div class="flex items-center justify-between py-4 group">
+              <span class="text-body-20 text-charcoal-600">The quick brown fox — Body 20</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-body-20">text-body-20</code>
+            </div>
+            <div class="flex items-center justify-between py-4 group">
+              <span class="text-body-18 text-charcoal-600">The quick brown fox — Body 18</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-body-18">text-body-18</code>
+            </div>
+            <div class="flex items-center justify-between py-4 group">
+              <span class="text-body-16 text-charcoal-600">The quick brown fox — Body 16</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-body-16">text-body-16</code>
+            </div>
+            <div class="flex items-center justify-between py-4 group">
+              <span class="text-body-14 text-charcoal-600">The quick brown fox — Body 14</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-body-14">text-body-14</code>
+            </div>
+            <div class="flex items-center justify-between py-4 group">
+              <span class="text-body-12 text-charcoal-600">The quick brown fox — Body 12</span>
+              <code class="text-[11px] font-mono text-charcoal-300 group-hover:text-charcoal-600 transition-colors ml-6 shrink-0" data-copy="text-body-12">text-body-12</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacing -->
+      <section id="spacing" class="mb-20">
+        <h2 class="text-headline-32 text-charcoal-600 mb-2">Spacing</h2>
+        <p class="text-body-14 text-charcoal-400 mb-10">4px base scale. Custom tokens extend Tailwind defaults.</p>
+
+        <div class="mb-8">
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-4">Custom Tokens</div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-4">
+              <div class="w-[60px] h-3 bg-charcoal-600 rounded-sm shrink-0"></div>
+              <code class="text-[12px] font-mono text-charcoal-600 w-16">space-15</code>
+              <span class="text-body-12 text-charcoal-400">60px — padding sections</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-[84px] h-3 bg-charcoal-600 rounded-sm shrink-0"></div>
+              <code class="text-[12px] font-mono text-charcoal-600 w-16">space-21</code>
+              <span class="text-body-12 text-charcoal-400">84px</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-[88px] h-3 bg-charcoal-600 rounded-sm shrink-0"></div>
+              <code class="text-[12px] font-mono text-charcoal-600 w-16">space-22</code>
+              <span class="text-body-12 text-charcoal-400">88px</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-[100px] h-3 bg-charcoal-600 rounded-sm shrink-0"></div>
+              <code class="text-[12px] font-mono text-charcoal-600 w-16">space-25</code>
+              <span class="text-body-12 text-charcoal-400">100px</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-[120px] h-3 bg-charcoal-600 rounded-sm shrink-0"></div>
+              <code class="text-[12px] font-mono text-charcoal-600 w-16">space-30</code>
+              <span class="text-body-12 text-charcoal-400">120px — large section gaps</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-charcoal-400 mb-4">Breakpoints</div>
+          <div class="divide-y divide-charcoal-100">
+            <div class="flex items-center justify-between py-3"><span class="text-body-14 text-charcoal-600 font-mono">sm</span><span class="text-body-14 text-charcoal-400">640px</span></div>
+            <div class="flex items-center justify-between py-3"><span class="text-body-14 text-charcoal-600 font-mono">md</span><span class="text-body-14 text-charcoal-400">768px</span></div>
+            <div class="flex items-center justify-between py-3"><span class="text-body-14 text-charcoal-600 font-mono">lg</span><span class="text-body-14 text-charcoal-400">1024px</span></div>
+            <div class="flex items-center justify-between py-3"><span class="text-body-14 text-charcoal-600 font-mono">xl</span><span class="text-body-14 text-charcoal-400">1280px</span></div>
+            <div class="flex items-center justify-between py-3"><span class="text-body-14 text-charcoal-600 font-mono">2xl</span><span class="text-body-14 text-charcoal-400">1440px — custom</span></div>
+            <div class="flex items-center justify-between py-3"><span class="text-body-14 text-charcoal-600 font-mono">3xl</span><span class="text-body-14 text-charcoal-400">1600px — custom</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Radii -->
+      <section id="radii" class="mb-20">
+        <h2 class="text-headline-32 text-charcoal-600 mb-2">Radii</h2>
+        <p class="text-body-14 text-charcoal-400 mb-10">Custom border-radius tokens extend Tailwind's built-in scale. Click to copy.</p>
+        <div class="flex gap-6 flex-wrap">
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded">rounded</code>
+            <span class="text-[11px] text-charcoal-400">4px</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-lg mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-lg">rounded-lg</code>
+            <span class="text-[11px] text-charcoal-400">8px</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-xl mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-xl">rounded-xl</code>
+            <span class="text-[11px] text-charcoal-400">12px</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-2xl mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-2xl">rounded-2xl</code>
+            <span class="text-[11px] text-charcoal-400">16px</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-[18px] mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-18">rounded-18</code>
+            <span class="text-[11px] text-charcoal-400">18px</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-[20px] mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-20">rounded-20</code>
+            <span class="text-[11px] text-charcoal-400">20px — cards</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-[24px] mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-24">rounded-24</code>
+            <span class="text-[11px] text-charcoal-400">24px</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-[28px] mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-28">rounded-28</code>
+            <span class="text-[11px] text-charcoal-400">28px</span>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-charcoal-100 border border-charcoal-200 rounded-full mb-2"></div>
+            <code class="text-[11px] font-mono text-charcoal-600 block" data-copy="rounded-full">rounded-full</code>
+            <span class="text-[11px] text-charcoal-400">pills / avatars</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="nav.js"></script>
+</body>
+</html>

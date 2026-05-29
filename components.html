@@ -1,87 +1,378 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Components — Trade Component Library</title>
-    <link rel="stylesheet" href="assets/trade-tailwind.css" />
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
-  <body>
-    <aside class="lib-sidebar">
-      <header class="lib-sidebar__header">
-        <div class="lib-sidebar__title">Trade</div>
-        <div class="lib-sidebar__subtitle">Component Library</div>
-      </header>
-      <nav class="lib-sidebar__nav" id="lib-nav">
-        <div class="lib-nav-group">
-          <div class="lib-nav-group__label">Foundations</div>
-          <a href="index.html" class="lib-nav-link">Overview</a>
-          <a href="tokens.html#colors" class="lib-nav-link">Colors</a>
-          <a href="tokens.html#typography" class="lib-nav-link">Typography</a>
-          <a href="tokens.html#spacing" class="lib-nav-link">Spacing</a>
-          <a href="tokens.html#radii" class="lib-nav-link">Radii</a>
-        </div>
-        <div class="lib-nav-group">
-          <div class="lib-nav-group__label">Primitives</div>
-          <a href="primitives.html#buttons" class="lib-nav-link">Buttons</a>
-          <a href="primitives.html#badges" class="lib-nav-link">Badges</a>
-          <a href="primitives.html#inputs" class="lib-nav-link">Inputs</a>
-          <a href="primitives.html#dropdowns" class="lib-nav-link">Dropdowns</a>
-          <a href="primitives.html#selectors" class="lib-nav-link">Selectors</a>
-          <a href="primitives.html#chips" class="lib-nav-link">Chips &amp; tags</a>
-          <a href="primitives.html#accordions" class="lib-nav-link">Accordions</a>
-          <a href="primitives.html#avatars" class="lib-nav-link">Avatars</a>
-          <a href="primitives.html#progress" class="lib-nav-link">Progress</a>
-        </div>
-        <div class="lib-nav-group" id="lib-category-nav">
-          <div class="lib-nav-group__label">Components</div>
-          <!-- Category links injected by JS -->
-        </div>
-      </nav>
-    </aside>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components — Trade Component Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          sans: ['Inter', 'Helvetica', 'sans-serif'],
+          serif: ['GT Alpina', 'Georgia', 'serif'],
+          mono: ['Geist Mono', 'monospace'],
+        },
+        extend: {
+          spacing: { 15: '3.75rem', 21: '5.25rem', 22: '5.5rem', 25: '6.25rem', 30: '7.5rem' },
+          borderRadius: { 18: '18px', 20: '20px', 24: '24px', 28: '28px' },
+          colors: {
+            'charcoal-600': '#252525', 'charcoal-500': '#4F4F52', 'charcoal-400': '#7A7A7F',
+            'charcoal-300': '#B8B8BC', 'charcoal-200': '#D7D7DA', 'charcoal-100': '#ECECEE',
+            'charcoal-50': '#F7F7F8', 'surface-white': '#FFFFFF', 'surface-warm': '#F9F6F6',
+            'roast': '#9C3912', 'red': '#F45048', 'trade-utility': '#029C02',
+            'highlighter-200': '#EBFF88', 'highlighter-100': '#F3FFB9',
+            'blurple-500': '#687AFD', 'blurple-400': '#808EFF', 'blurple-300': '#9FAAFE',
+            'blurple-200': '#C7CDFE', 'blurple-50': '#E5E7FF',
+            'ice-300': '#B0DDF7', 'ice-200': '#C5E8FC',
+            'bubblegum-500': '#E07DE8', 'bubblegum-400': '#EB9BF2', 'bubblegum-300': '#EFAEF4',
+            'bubblegum-200': '#F7C5FB', 'bubblegum-50': '#FDF1FE',
+          },
+          fontSize: {
+            'eyebrow-lg': ['16px', { lineHeight: '1.5', letterSpacing: '2.56px', fontWeight: '500' }],
+            'eyebrow-md': ['14px', { lineHeight: '1.5', letterSpacing: '2.52px', fontWeight: '500' }],
+            'eyebrow-sm': ['12px', { lineHeight: '1.5', letterSpacing: '2.4px', fontWeight: '500' }],
+            'eyebrow-xs': ['11px', { lineHeight: '1.5', letterSpacing: '0.66px', fontWeight: '500' }],
+            'display-72': ['72px', { lineHeight: '0.98', letterSpacing: '-2.16px', fontWeight: '500' }],
+            'display-60': ['60px', { lineHeight: '1', letterSpacing: '-1.8px', fontWeight: '500' }],
+            'display-48': ['48px', { lineHeight: '1', letterSpacing: '-1.44px', fontWeight: '500' }],
+            'display-40': ['40px', { lineHeight: '1', letterSpacing: '-1.2px', fontWeight: '500' }],
+            'display-36': ['36px', { lineHeight: '1', letterSpacing: '-1.08px', fontWeight: '500' }],
+            'display-28': ['28px', { lineHeight: '1', letterSpacing: '-0.84px', fontWeight: '500' }],
+            'headline-44': ['44px', { lineHeight: '1.1', letterSpacing: '-0.2px', fontWeight: '700' }],
+            'headline-32': ['32px', { lineHeight: '1.1', letterSpacing: '-0.2px', fontWeight: '700' }],
+            'headline-24': ['24px', { lineHeight: '1.1', letterSpacing: '-0.42px', fontWeight: '700' }],
+            'headline-20': ['20px', { lineHeight: '1.12', letterSpacing: '-0.5px', fontWeight: '700' }],
+            'headline-18': ['18px', { lineHeight: '1.12', letterSpacing: '-0.54px', fontWeight: '700' }],
+            'body-24': ['24px', { lineHeight: '1.5', letterSpacing: '0.42px', fontWeight: '400' }],
+            'body-20': ['20px', { lineHeight: '1.5', letterSpacing: '0.16px', fontWeight: '400' }],
+            'body-18': ['18px', { lineHeight: '1.5', letterSpacing: '0.12px', fontWeight: '400' }],
+            'body-16': ['16px', { lineHeight: '1.5', letterSpacing: 'normal', fontWeight: '400' }],
+            'body-14': ['14px', { lineHeight: '1.6', letterSpacing: '-0.02px', fontWeight: '400' }],
+            'body-12': ['12px', { lineHeight: '1.6', letterSpacing: 'normal', fontWeight: '400' }],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @font-face { font-family: 'GT Alpina'; src: local('GT Alpina'), local('GT-Alpina'); font-weight: 100 900; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 48px; }
+    body { -webkit-font-smoothing: antialiased; }
+    [data-copy] { cursor: pointer; }
+    [data-copy]:hover { color: #252525 !important; }
+  </style>
+</head>
+<body class="bg-white font-sans text-charcoal-600">
 
-    <main class="lib-main">
-      <header class="lib-main__header">
-        <h1 class="lib-h1">Components</h1>
-        <p class="lib-lede">
-          Every section currently in the Trade Shopify theme — grouped by
-          category, with legacy / versioning flags surfaced for audit.
-          <span id="lib-count" class="lib-body--muted"></span>
-        </p>
-      </header>
+  <aside id="sidebar" class="fixed inset-y-0 left-0 w-[240px] border-r border-charcoal-100 overflow-y-auto bg-white z-10 px-5 py-7"></aside>
 
-      <div class="lib-controls">
-        <input
-          type="search"
-          id="lib-search"
-          placeholder="Filter by name (e.g. trade-hero, accordion, v2)…"
-          class="lib-search-input"
-        />
-        <div class="lib-filter-row" id="lib-flag-filters">
-          <button data-flag-filter="all" class="lib-filter-pill is-active">All</button>
-          <button data-flag-filter="previewable" class="lib-filter-pill">Has live preview</button>
-          <button data-flag-filter="flagged" class="lib-filter-pill">Flagged only</button>
-          <button data-flag-filter="clean" class="lib-filter-pill">No flags</button>
-        </div>
+  <main class="ml-[240px] min-h-screen">
+    <div class="px-16 py-14 max-w-[960px]">
+
+      <!-- Page header -->
+      <div class="mb-14">
+        <h1 class="text-headline-44 text-charcoal-600 mb-3">Components</h1>
+        <p class="text-body-18 text-charcoal-400">Composed UI sections assembled from primitives. These represent the major surface patterns across storefront, quiz, and dashboard.</p>
       </div>
 
-      <div id="lib-categories"></div>
+      <!-- ─── PRODUCT CARD ─── -->
+      <section class="mb-16">
+        <div class="border-b border-charcoal-200 pb-4 mb-8">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Product Card</h2>
+          <p class="text-body-14 text-charcoal-400">Used in PLP grid, quiz results, and cart upsells. Supports image, badges, roaster, name, and CTA.</p>
+        </div>
+        <div class="flex gap-4 flex-wrap">
 
-      <footer class="lib-section lib-section--footnote">
-        <h2 class="lib-h2">What's not here yet</h2>
-        <ul class="lib-body">
-          <li><strong>Live previews for every section.</strong> Currently mapped: homepage, PDP (using <code>/products/organic-heartstrings</code>), collection (<code>/collections/all</code>), find-my-match. Other sections show "preview pending" — they need a usage scan first to know which template to link to.</li>
-          <li><strong>Schema details</strong> — settings, blocks, presets per section. Coming next.</li>
-          <li><strong>Full usage data</strong> — which templates reference each section, orphan detection. Coming next.</li>
-          <li><strong>About preview rendering:</strong> Shopify returns <code>x-frame-options: DENY</code> on every storefront response, so we can't embed the live render inline. "Open live preview ↗" pops the preview theme in a new tab with the right anchor.</li>
-          <li><strong>Logged-in?</strong> The preview URLs include <code>?bypass_redirects=1</code>, which the preview theme's <code>customer-redirect</code>, <code>active-subscriber-redirect</code>, and <code>quiz-redirect</code> sections respect — so you stay on the rendered page instead of being routed to <code>/account?view=my_trade</code>. Only works on preview theme <code>186163495231</code>; production still redirects.</li>
-        </ul>
-      </footer>
-    </main>
+          <!-- Card A -->
+          <div class="w-[220px] flex flex-col rounded-20 overflow-hidden border border-charcoal-100 bg-white hover:border-charcoal-200 transition-colors">
+            <div class="relative bg-surface-warm h-52 flex items-center justify-center overflow-hidden">
+              <div class="text-5xl">☕</div>
+              <div class="absolute top-3 left-3 flex gap-1">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-charcoal-100 text-charcoal-600">Organic</span>
+              </div>
+            </div>
+            <div class="p-4 flex flex-col gap-2 flex-1">
+              <div class="font-mono text-eyebrow-xs text-charcoal-400">Onyx Coffee Lab</div>
+              <div class="text-headline-18 text-charcoal-600 leading-tight">Southern Weather Blend</div>
+              <div class="flex gap-1 flex-wrap mt-auto">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] bg-blurple-50 text-blurple-500">Fan Favorite</span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="text-body-14 font-medium text-charcoal-600">$18 / bag</span>
+                <button class="h-8 px-3 rounded-lg text-body-12 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors">Add</button>
+              </div>
+            </div>
+          </div>
 
-    <script src="assets/script.js"></script>
-    <script src="assets/components-data.js"></script>
-    <script src="assets/components.js"></script>
-  </body>
+          <!-- Card B — warm background -->
+          <div class="w-[220px] flex flex-col rounded-20 overflow-hidden border border-charcoal-100 bg-white hover:border-charcoal-200 transition-colors">
+            <div class="relative bg-ice-200 h-52 flex items-center justify-center overflow-hidden">
+              <div class="text-5xl">🫘</div>
+              <div class="absolute top-3 left-3 flex gap-1">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-highlighter-200 text-charcoal-600">New</span>
+              </div>
+            </div>
+            <div class="p-4 flex flex-col gap-2 flex-1">
+              <div class="font-mono text-eyebrow-xs text-charcoal-400">George Howell Coffee</div>
+              <div class="text-headline-18 text-charcoal-600 leading-tight">Ardi Natural Ethiopia</div>
+              <div class="flex gap-1 flex-wrap mt-auto">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] border border-roast text-roast">Light Roast</span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="text-body-14 font-medium text-charcoal-600">$22 / bag</span>
+                <button class="h-8 px-3 rounded-lg text-body-12 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card C — highlighter promo -->
+          <div class="w-[220px] flex flex-col rounded-20 overflow-hidden border border-highlighter-200 bg-white">
+            <div class="relative bg-highlighter-100 h-52 flex items-center justify-center overflow-hidden">
+              <div class="text-5xl">🏆</div>
+              <div class="absolute top-3 left-3 flex gap-1">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-highlighter-200 text-charcoal-600">Best Match</span>
+              </div>
+            </div>
+            <div class="p-4 flex flex-col gap-2 flex-1">
+              <div class="font-mono text-eyebrow-xs text-charcoal-400">Stumptown Coffee</div>
+              <div class="text-headline-18 text-charcoal-600 leading-tight">Hair Bender</div>
+              <div class="flex gap-1 flex-wrap mt-auto">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] bg-charcoal-100 text-charcoal-600">Medium Roast</span>
+              </div>
+              <div class="flex items-center justify-between mt-2">
+                <span class="text-body-14 font-medium text-charcoal-600">$16 / bag</span>
+                <button class="h-8 px-3 rounded-lg text-body-12 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors">Add</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="mt-6 flex items-center justify-between">
+          <span class="text-body-12 text-charcoal-400">Card wrapper</span>
+          <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors" data-copy="flex flex-col rounded-20 overflow-hidden border border-charcoal-100 bg-white hover:border-charcoal-200 transition-colors">rounded-20 overflow-hidden border-charcoal-100</code>
+        </div>
+      </section>
+
+      <!-- ─── BUY BOX ─── -->
+      <section class="mb-16">
+        <div class="border-b border-charcoal-200 pb-4 mb-8">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Buy Box</h2>
+          <p class="text-body-14 text-charcoal-400">PDP purchase module — bag size selector, grind, frequency, and CTA.</p>
+        </div>
+        <div class="max-w-sm border border-charcoal-100 rounded-20 p-6 bg-white">
+          <div class="mb-5">
+            <div class="font-mono text-eyebrow-sm text-charcoal-400 mb-2">Bag size</div>
+            <div class="flex gap-2">
+              <button class="flex-1 py-3 rounded-lg border border-charcoal-200 text-body-14 text-charcoal-500 hover:border-charcoal-400 transition-colors">6 oz</button>
+              <button class="flex-1 py-3 rounded-lg border border-charcoal-600 bg-charcoal-50 text-body-14 text-charcoal-600 font-medium">8 oz</button>
+              <button class="flex-1 py-3 rounded-lg border border-charcoal-200 text-body-14 text-charcoal-500 hover:border-charcoal-400 transition-colors">12 oz</button>
+            </div>
+          </div>
+          <div class="mb-5">
+            <div class="font-mono text-eyebrow-sm text-charcoal-400 mb-2">Grind</div>
+            <div class="relative">
+              <select class="w-full h-12 px-4 bg-white border border-charcoal-200 rounded-lg text-body-14 text-charcoal-600 appearance-none focus:border-charcoal-600 focus:outline-none transition-colors">
+                <option>Whole Bean</option>
+                <option selected>Medium</option>
+                <option>Fine</option>
+              </select>
+              <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-charcoal-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+          </div>
+          <div class="mb-6">
+            <div class="font-mono text-eyebrow-sm text-charcoal-400 mb-2">Frequency</div>
+            <div class="flex gap-2">
+              <button class="flex-1 py-3 rounded-lg border border-charcoal-200 text-body-14 text-charcoal-500 hover:border-charcoal-400 transition-colors">Weekly</button>
+              <button class="flex-1 py-3 rounded-lg border border-charcoal-600 bg-charcoal-50 text-body-14 text-charcoal-600 font-medium">Biweekly</button>
+              <button class="flex-1 py-3 rounded-lg border border-charcoal-200 text-body-14 text-charcoal-500 hover:border-charcoal-400 transition-colors">Monthly</button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-body-16 text-charcoal-600 font-medium">$17.60 / delivery</span>
+            <span class="text-body-12 text-charcoal-400 line-through">$22.00</span>
+          </div>
+          <button class="w-full h-[52px] rounded-lg bg-charcoal-600 text-white text-body-16 hover:bg-charcoal-500 transition-colors flex items-center justify-center">Subscribe &amp; Save 20%</button>
+          <button class="w-full h-[52px] rounded-lg border border-charcoal-200 text-charcoal-600 text-body-16 hover:bg-charcoal-500 hover:text-white hover:border-charcoal-500 transition-all mt-3 flex items-center justify-center">One-time purchase</button>
+        </div>
+      </section>
+
+      <!-- ─── HERO SECTION ─── -->
+      <section class="mb-16">
+        <div class="border-b border-charcoal-200 pb-4 mb-8">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Hero Section</h2>
+          <p class="text-body-14 text-charcoal-400">Full-width hero with eyebrow, display headline, subtext, and CTA pair.</p>
+        </div>
+        <div class="bg-surface-warm rounded-20 px-12 py-16 text-center">
+          <div class="font-mono text-eyebrow-md text-charcoal-400 mb-4">Your coffee, your way</div>
+          <div class="font-serif text-display-48 text-charcoal-600 mb-6 max-w-lg mx-auto">Coffee that gets better every delivery.</div>
+          <p class="text-body-18 text-charcoal-400 max-w-sm mx-auto mb-8">Personalized to your taste. Roasted fresh. Delivered on your schedule.</p>
+          <div class="flex gap-3 justify-center">
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 bg-charcoal-600 text-white hover:bg-charcoal-500 transition-colors">Start your order</button>
+            <button class="h-[52px] inline-flex items-center justify-center px-6 rounded-lg text-body-16 border border-charcoal-200 text-charcoal-600 hover:bg-charcoal-500 hover:text-white transition-all">Take the quiz</button>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-body-12 text-charcoal-400">Hero wrapper</span>
+          <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors" data-copy="bg-surface-warm rounded-20 px-12 py-16 text-center">bg-surface-warm rounded-20 px-12 py-16</code>
+        </div>
+      </section>
+
+      <!-- ─── QUIZ MATCH CARD ─── -->
+      <section class="mb-16">
+        <div class="border-b border-charcoal-200 pb-4 mb-8">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Quiz Match Card</h2>
+          <p class="text-body-14 text-charcoal-400">Displayed in quiz results — shows match percentage, tasting notes, and add-to-order CTA.</p>
+        </div>
+        <div class="flex gap-4 flex-wrap">
+
+          <div class="w-[280px] border border-highlighter-200 rounded-20 overflow-hidden bg-white">
+            <div class="bg-highlighter-100 h-44 flex items-center justify-center relative">
+              <div class="text-6xl">☕</div>
+              <div class="absolute top-3 right-3 w-12 h-12 rounded-full bg-charcoal-600 text-white flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-[11px] font-bold leading-none">98%</div>
+                  <div class="text-[8px] leading-none mt-0.5 opacity-70">match</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="font-mono text-eyebrow-xs text-charcoal-400 mb-1">Counter Culture</div>
+              <div class="text-headline-20 text-charcoal-600 mb-3">Hologram</div>
+              <div class="flex gap-1 flex-wrap mb-4">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-blurple-50 text-blurple-500">Fruity</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-charcoal-50 text-charcoal-600">Floral</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-charcoal-50 text-charcoal-600">Citrus</span>
+              </div>
+              <button class="w-full h-[44px] rounded-lg bg-charcoal-600 text-white text-body-14 hover:bg-charcoal-500 transition-colors flex items-center justify-center">Add to my queue</button>
+            </div>
+          </div>
+
+          <div class="w-[280px] border border-charcoal-100 rounded-20 overflow-hidden bg-white">
+            <div class="bg-surface-warm h-44 flex items-center justify-center relative">
+              <div class="text-6xl">🫘</div>
+              <div class="absolute top-3 right-3 w-12 h-12 rounded-full bg-charcoal-300 text-white flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-[11px] font-bold leading-none">85%</div>
+                  <div class="text-[8px] leading-none mt-0.5 opacity-70">match</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="font-mono text-eyebrow-xs text-charcoal-400 mb-1">Intelligentsia</div>
+              <div class="text-headline-20 text-charcoal-600 mb-3">Black Cat Classic</div>
+              <div class="flex gap-1 flex-wrap mb-4">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-charcoal-50 text-charcoal-600">Chocolate</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] bg-charcoal-50 text-charcoal-600">Caramel</span>
+              </div>
+              <button class="w-full h-[44px] rounded-lg border border-charcoal-200 text-charcoal-600 text-body-14 hover:bg-charcoal-500 hover:text-white transition-all flex items-center justify-center">Add to my queue</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── ANNOUNCEMENT BANNER ─── -->
+      <section class="mb-16">
+        <div class="border-b border-charcoal-200 pb-4 mb-8">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Announcement Banner</h2>
+          <p class="text-body-14 text-charcoal-400">Top-of-page promotional strip. Supports highlighter, blurple, and charcoal variants.</p>
+        </div>
+        <div class="space-y-3">
+          <div class="w-full bg-highlighter-200 text-charcoal-600 text-center py-3 text-body-14 font-medium">
+            🎉 Free shipping on all orders over $30 — <a href="#" class="underline">Shop now</a>
+          </div>
+          <div class="w-full bg-charcoal-600 text-white text-center py-3 text-body-14">
+            New arrivals every Tuesday. <a href="#" class="underline">See what's fresh →</a>
+          </div>
+          <div class="w-full bg-blurple-500 text-white text-center py-3 text-body-14">
+            Refer a friend, both get $10 off. <a href="#" class="underline">Share your link</a>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-body-12 text-charcoal-400">Highlighter variant</span>
+          <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors" data-copy="w-full bg-highlighter-200 text-charcoal-600 text-center py-3 text-body-14 font-medium">bg-highlighter-200 text-charcoal-600 py-3</code>
+        </div>
+      </section>
+
+      <!-- ─── TESTIMONIAL CARD ─── -->
+      <section class="mb-16">
+        <div class="border-b border-charcoal-200 pb-4 mb-8">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Testimonial Card</h2>
+          <p class="text-body-14 text-charcoal-400">Used in UGC rails and trust sections on PDP and homepage.</p>
+        </div>
+        <div class="flex gap-4 flex-wrap">
+          <div class="w-[260px] p-6 border border-charcoal-100 rounded-20 bg-surface-warm flex flex-col gap-4">
+            <div class="flex gap-0.5">
+              <span class="text-roast">★★★★★</span>
+            </div>
+            <p class="text-body-14 text-charcoal-600 leading-relaxed">"I had no idea coffee could taste this good. I've tried 12 roasters and every one has been incredible."</p>
+            <div class="flex items-center gap-3 mt-auto">
+              <div class="w-8 h-8 rounded-full bg-charcoal-600 text-white flex items-center justify-center text-body-12 font-medium">SL</div>
+              <div>
+                <div class="text-body-12 font-medium text-charcoal-600">Sarah L.</div>
+                <div class="text-body-12 text-charcoal-400">Member since 2022</div>
+              </div>
+            </div>
+          </div>
+          <div class="w-[260px] p-6 border border-charcoal-100 rounded-20 bg-surface-warm flex flex-col gap-4">
+            <div class="flex gap-0.5">
+              <span class="text-roast">★★★★★</span>
+            </div>
+            <p class="text-body-14 text-charcoal-600 leading-relaxed">"Trade has completely changed how I start my mornings. The personalization is spot-on."</p>
+            <div class="flex items-center gap-3 mt-auto">
+              <div class="w-8 h-8 rounded-full bg-roast text-white flex items-center justify-center text-body-12 font-medium">MK</div>
+              <div>
+                <div class="text-body-12 font-medium text-charcoal-600">Marcus K.</div>
+                <div class="text-body-12 text-charcoal-400">Member since 2021</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-body-12 text-charcoal-400">Card wrapper</span>
+          <code class="text-[11px] font-mono text-charcoal-300 hover:text-charcoal-600 transition-colors" data-copy="p-6 border border-charcoal-100 rounded-20 bg-surface-warm flex flex-col gap-4">bg-surface-warm rounded-20 border-charcoal-100</code>
+        </div>
+      </section>
+
+      <!-- ─── SUBSCRIPTION STATUS ─── -->
+      <section class="mb-16">
+        <div class="border-b border-charcoal-200 pb-4 mb-8">
+          <h2 class="text-headline-24 text-charcoal-600 mb-1">Subscription Status Card</h2>
+          <p class="text-body-14 text-charcoal-400">Dashboard component showing delivery status, next date, and quick actions.</p>
+        </div>
+        <div class="max-w-md border border-charcoal-100 rounded-20 overflow-hidden">
+          <div class="bg-charcoal-600 px-6 py-4 flex items-center justify-between">
+            <div>
+              <div class="text-white text-body-14 font-medium">Next delivery</div>
+              <div class="text-charcoal-300 text-body-12">June 4, 2026</div>
+            </div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-body-12 bg-trade-utility/20 text-trade-utility font-medium">Active</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start gap-4 mb-5">
+              <div class="w-16 h-16 rounded-lg bg-surface-warm flex items-center justify-center text-2xl shrink-0">☕</div>
+              <div>
+                <div class="text-body-14 font-medium text-charcoal-600">Onyx — Southern Weather</div>
+                <div class="text-body-12 text-charcoal-400 mt-0.5">8 oz · Medium grind · Every 2 weeks</div>
+                <div class="text-body-12 text-charcoal-400">$17.60 per delivery</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button class="flex-1 h-10 rounded-lg border border-charcoal-200 text-body-14 text-charcoal-600 hover:bg-charcoal-50 transition-colors">Skip next</button>
+              <button class="flex-1 h-10 rounded-lg bg-charcoal-600 text-white text-body-14 hover:bg-charcoal-500 transition-colors">Manage</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="nav.js"></script>
+</body>
 </html>
